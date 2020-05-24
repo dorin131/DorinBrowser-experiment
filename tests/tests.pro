@@ -7,7 +7,7 @@ CONFIG += thread
 CONFIG -= qt
 
 HEADERS += \
-        tst_test.h
+    tst_tokenizer.h
 
 SOURCES += \
         main.cpp \

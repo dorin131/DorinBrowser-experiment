@@ -30,10 +30,9 @@ private:
     bool is_letter();
     void skip_whitespace();
     std::string read_identifier();
-    std::string read_string_single_quote();
-    std::string read_string_double_quote();
+    std::string read_until(char);
     std::string read_number();
-    Token::Type get_identifier_type(std::string value);
+    Token::Type get_identifier_type(std::string);
 };
 
 } // namespace js

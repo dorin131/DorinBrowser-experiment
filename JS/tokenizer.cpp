@@ -31,6 +31,10 @@ Token Tokenizer::next_token()
 {
     Token* t;
 
+    if (position == int(code.length())) {
+        return *new Token(Token::EOS, 0);
+    }
+
     skip_whitespace();
 
     switch (ch) {
@@ -102,6 +106,12 @@ Token Tokenizer::next_token()
     case '.':
         t = new Token(Token::PERIOD, ch);
         break;
+    case '\"':
+        t = new Token(Token::STRING, read_until(ch));
+        break;
+    case '\'':
+        t = new Token(Token::STRING, read_until(ch));
+        break;
     case 0:
         t = new Token(Token::EOS, ch);
         break;
@@ -132,7 +142,7 @@ bool Tokenizer::is_single_quote()
 
 bool Tokenizer::is_double_quote()
 {
-    return ch == '"';
+    return ch == '\"';
 }
 
 void Tokenizer::skip_whitespace()
@@ -153,27 +163,17 @@ std::string Tokenizer::read_identifier()
     while (is_letter() || is_digit()) {
         read_char();
     }
-    return code.substr(start_pos, position);
+    return code.substr(start_pos, position - start_pos);
 }
 
-std::string Tokenizer::read_string_single_quote()
+std::string Tokenizer::read_until(char end_char)
 {
     read_char();
     int start_pos = position;
-    while (!is_single_quote()) {
+    while (ch != end_char) {
         read_char();
     }
-    return code.substr(start_pos, position);
-}
-
-std::string Tokenizer::read_string_double_quote()
-{
-    read_char();
-    int start_pos = position;
-    while (!is_double_quote()) {
-        read_char();
-    }
-    return code.substr(start_pos, position);
+    return code.substr(start_pos, position - start_pos);
 }
 
 std::string Tokenizer::read_number()
@@ -182,7 +182,7 @@ std::string Tokenizer::read_number()
     while (is_digit()) {
         read_char();
     }
-    return code.substr(start_pos, position);
+    return code.substr(start_pos, position - start_pos);
 }
 
 Token::Type Tokenizer::get_identifier_type(std::string value)
