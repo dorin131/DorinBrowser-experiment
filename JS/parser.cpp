@@ -13,11 +13,13 @@ void Parser::next_token()
     peek_token = tokenizer->next_token();
 }
 
-void Parser::parse_program()
+PrimaryExpression* Parser::parse_program()
 {
+    auto program = new PrimaryExpression();
     while (!current_token_is(Token::EOS)) {
         // TODO: Parse
     }
+    return program;
 }
 
 bool Parser::current_token_is(Token::Type type)
