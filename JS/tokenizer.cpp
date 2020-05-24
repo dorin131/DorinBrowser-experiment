@@ -27,12 +27,12 @@ void Tokenizer::read_char()
     read_position++;
 }
 
-Token Tokenizer::next_token()
+Token* Tokenizer::next_token()
 {
     Token* t;
 
     if (position == int(code.length())) {
-        return *new Token(Token::EOS, 0);
+        return new Token(Token::EOS, 0);
     }
 
     skip_whitespace();
@@ -119,15 +119,15 @@ Token Tokenizer::next_token()
         if (is_letter()) {
             std::string value = read_identifier();
             Token::Type type = get_identifier_type(value);
-            return *new Token(type, value);
+            return new Token(type, value);
         } else if (is_digit()) {
-            return *new Token(Token::NUMBER, read_number());
+            return new Token(Token::NUMBER, read_number());
         }
         t = new Token(Token::ILLEGAL, ch);
     }
 
     read_char();
-    return *t;
+    return t;
 }
 
 bool Tokenizer::is_digit()
