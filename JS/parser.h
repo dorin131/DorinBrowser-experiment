@@ -3,7 +3,7 @@
 
 #include "token.h"
 #include "tokenizer.h"
-#include "./expressions/primaryexpression.h"
+#include "statements/program.h"
 
 /**
  * @brief The Parser class is defining the context-free grammar for our JS implementation
@@ -19,7 +19,7 @@ class Parser
 public:
     Parser(Tokenizer*);
 
-    PrimaryExpression* parse_program();
+    Program* parse_program();
 private:
     Tokenizer* tokenizer;
     Token* current_token;

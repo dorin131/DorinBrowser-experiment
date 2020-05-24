@@ -1,4 +1,5 @@
 #include "parser.h"
+#include "statements/program.h"
 
 namespace js {
 
@@ -13,11 +14,11 @@ void Parser::next_token()
     peek_token = tokenizer->next_token();
 }
 
-PrimaryExpression* Parser::parse_program()
+Program* Parser::parse_program()
 {
-    auto program = new PrimaryExpression();
+    Program* program = new Program();
     while (!current_token_is(Token::EOS)) {
-        // TODO: Parse
+        program->append(Statement());
     }
     return program;
 }
