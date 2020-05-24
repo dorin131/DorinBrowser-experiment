@@ -27,6 +27,12 @@ private:
 
     void next_token();
     bool current_token_is(Token::Type);
+
+    // Parsers
+    Statement* parse_statement();
+    //BlockStatement* parse_block_statement();
+    //VariableStatement* parse_variable_statement();
+    //...
 };
 
 } //namespace js

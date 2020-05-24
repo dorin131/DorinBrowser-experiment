@@ -18,9 +18,14 @@ Program* Parser::parse_program()
 {
     Program* program = new Program();
     while (!current_token_is(Token::EOS)) {
-        program->append(Statement());
+        program->append(parse_statement());
     }
     return program;
+}
+
+Statement* Parser::parse_statement()
+{
+    return new Statement();
 }
 
 bool Parser::current_token_is(Token::Type type)
