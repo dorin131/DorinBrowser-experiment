@@ -15,14 +15,14 @@ class Program: public Statement
     /**
      * @brief A list of Statements
      */
-    std::list<Statement*> source_elements;
+    std::list<Statement> source_elements;
 public:
     Program();
 
     /**
      * @brief Add a SourceElement
      */
-    void append(Statement*);
+    void append(Statement);
 };
 
 } // namespace js

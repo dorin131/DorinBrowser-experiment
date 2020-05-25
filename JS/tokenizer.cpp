@@ -27,12 +27,12 @@ void Tokenizer::read_char()
     read_position++;
 }
 
-Token* Tokenizer::next_token()
+Token Tokenizer::next_token()
 {
-    Token* t;
+    Token t = Token(Token::ILLEGAL, ch);
 
     if (position == int(code.length())) {
-        return new Token(Token::EOS, 0);
+        return Token(Token::EOS, 0);
     }
 
     skip_whitespace();
@@ -41,89 +41,88 @@ Token* Tokenizer::next_token()
     case '=':
         if (peek_char() == '=') {
             read_char();
-            t = new Token(Token::EQ, "==");
+            t = Token(Token::EQ, "==");
         } else {
-            t = new Token(Token::ASSIGN, ch);
+            t = Token(Token::ASSIGN, ch);
         }
         break;
     case '<':
         if (peek_char() == '=') {
             read_char();
-            t = new Token(Token::LTE, "<=");
+            t = Token(Token::LTE, "<=");
         } else {
-            t = new Token(Token::LT, ch);
+            t = Token(Token::LT, ch);
         }
         break;
     case '>':
         if (peek_char() == '=') {
             read_char();
-            t = new Token(Token::GTE, ">=");
+            t = Token(Token::GTE, ">=");
         } else {
-            t = new Token(Token::GT, ch);
+            t = Token(Token::GT, ch);
         }
         break;
     case '!':
         if (peek_char() == '=') {
             read_char();
-            t = new Token(Token::NE, "!=");
+            t = Token(Token::NE, "!=");
         } else {
-            t = new Token(Token::NOT, ch);
+            t = Token(Token::NOT, ch);
         }
         break;
     case ':':
-        t = new Token(Token::COLON, ch);
+        t = Token(Token::COLON, ch);
         break;
     case ';':
-        t = new Token(Token::SEMICOLON, ch);
+        t = Token(Token::SEMICOLON, ch);
         break;
     case '(':
-        t = new Token(Token::LPAREN, ch);
+        t = Token(Token::LPAREN, ch);
         break;
     case ')':
-        t = new Token(Token::RPAREN, ch);
+        t = Token(Token::RPAREN, ch);
         break;
     case ',':
-        t = new Token(Token::COMMA, ch);
+        t = Token(Token::COMMA, ch);
         break;
     case '+':
-        t = new Token(Token::ADD, ch);
+        t = Token(Token::ADD, ch);
         break;
     case '-':
-        t = new Token(Token::SUB, ch);
+        t = Token(Token::SUB, ch);
         break;
     case '*':
-        t = new Token(Token::SUB, ch);
+        t = Token(Token::SUB, ch);
         break;
     case '/':
-        t = new Token(Token::DIV, ch);
+        t = Token(Token::DIV, ch);
         break;
     case '{':
-        t = new Token(Token::LBRACE, ch);
+        t = Token(Token::LBRACE, ch);
         break;
     case '}':
-        t = new Token(Token::RBRACE, ch);
+        t = Token(Token::RBRACE, ch);
         break;
     case '.':
-        t = new Token(Token::PERIOD, ch);
+        t = Token(Token::PERIOD, ch);
         break;
     case '\"':
-        t = new Token(Token::STRING, read_until(ch));
+        t = Token(Token::STRING, read_until(ch));
         break;
     case '\'':
-        t = new Token(Token::STRING, read_until(ch));
+        t = Token(Token::STRING, read_until(ch));
         break;
     case 0:
-        t = new Token(Token::EOS, ch);
+        t = Token(Token::EOS, ch);
         break;
     default:
         if (is_letter()) {
             std::string value = read_identifier();
             Token::Type type = get_identifier_type(value);
-            return new Token(type, value);
+            return Token(type, value);
         } else if (is_digit()) {
-            return new Token(Token::NUMBER, read_number());
+            return Token(Token::NUMBER, read_number());
         }
-        t = new Token(Token::ILLEGAL, ch);
     }
 
     read_char();

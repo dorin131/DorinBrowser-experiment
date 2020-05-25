@@ -17,19 +17,19 @@ namespace js {
 class Parser
 {
 public:
-    Parser(Tokenizer*);
+    Parser(Tokenizer);
 
-    Program* parse_program();
+    Program parse_program();
 private:
-    Tokenizer* tokenizer;
-    Token* current_token;
-    Token* peek_token;
+    Tokenizer tokenizer;
+    Token current_token;
+    Token peek_token;
 
     void next_token();
     bool current_token_is(Token::Type);
 
     // Parsers
-    Statement* parse_statement();
+    Statement parse_statement();
     //BlockStatement* parse_block_statement();
     //VariableStatement* parse_variable_statement();
     //...

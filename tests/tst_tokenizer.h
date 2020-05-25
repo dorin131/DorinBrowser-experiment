@@ -11,38 +11,38 @@ using namespace testing;
 TEST(Tokenizer, GettingTokens)
 {
     std::string input = "\"hello\"; 'world'; var abc = 1 + 2 == function () { return 1 >= 4 };";
-    js::Tokenizer* t = new js::Tokenizer(input);
+    js::Tokenizer t = js::Tokenizer(input);
 
-    std::vector<js::Token*> expected_tokens = {
-        new js::Token(js::Token::STRING, "hello"),
-        new js::Token(js::Token::SEMICOLON, ";"),
-        new js::Token(js::Token::STRING, "world"),
-        new js::Token(js::Token::SEMICOLON, ";"),
-        new js::Token(js::Token::VAR, "var"),
-        new js::Token(js::Token::IDENTIFIER, "abc"),
-        new js::Token(js::Token::ASSIGN, "="),
-        new js::Token(js::Token::NUMBER, "1"),
-        new js::Token(js::Token::ADD, "+"),
-        new js::Token(js::Token::NUMBER, "2"),
-        new js::Token(js::Token::EQ, "=="),
-        new js::Token(js::Token::FUNCTION, "function"),
-        new js::Token(js::Token::LPAREN, "("),
-        new js::Token(js::Token::RPAREN, ")"),
-        new js::Token(js::Token::LBRACE, "{"),
-        new js::Token(js::Token::RETURN, "return"),
-        new js::Token(js::Token::NUMBER, "1"),
-        new js::Token(js::Token::GTE, ">="),
-        new js::Token(js::Token::NUMBER, "4"),
-        new js::Token(js::Token::RBRACE, "}"),
-        new js::Token(js::Token::SEMICOLON, ";"),
-        new js::Token(js::Token::EOS, 0),
-        new js::Token(js::Token::EOS, 0),
-        new js::Token(js::Token::EOS, 0),
+    std::vector<js::Token> expected_tokens = {
+        js::Token(js::Token::STRING, "hello"),
+        js::Token(js::Token::SEMICOLON, ";"),
+        js::Token(js::Token::STRING, "world"),
+        js::Token(js::Token::SEMICOLON, ";"),
+        js::Token(js::Token::VAR, "var"),
+        js::Token(js::Token::IDENTIFIER, "abc"),
+        js::Token(js::Token::ASSIGN, "="),
+        js::Token(js::Token::NUMBER, "1"),
+        js::Token(js::Token::ADD, "+"),
+        js::Token(js::Token::NUMBER, "2"),
+        js::Token(js::Token::EQ, "=="),
+        js::Token(js::Token::FUNCTION, "function"),
+        js::Token(js::Token::LPAREN, "("),
+        js::Token(js::Token::RPAREN, ")"),
+        js::Token(js::Token::LBRACE, "{"),
+        js::Token(js::Token::RETURN, "return"),
+        js::Token(js::Token::NUMBER, "1"),
+        js::Token(js::Token::GTE, ">="),
+        js::Token(js::Token::NUMBER, "4"),
+        js::Token(js::Token::RBRACE, "}"),
+        js::Token(js::Token::SEMICOLON, ";"),
+        js::Token(js::Token::EOS, 0),
+        js::Token(js::Token::EOS, 0),
+        js::Token(js::Token::EOS, 0),
     };
 
-    for (js::Token* expected_token : expected_tokens) {
-        js::Token* actual_token = t->next_token();
-        EXPECT_EQ(*actual_token, *expected_token);
+    for (js::Token expected_token : expected_tokens) {
+        js::Token actual_token = t.next_token();
+        EXPECT_EQ(actual_token, expected_token);
     }
 }
 

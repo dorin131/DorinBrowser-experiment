@@ -14,7 +14,7 @@ class Tokenizer
 {
 public:
     Tokenizer(std::string code);
-    Token* next_token();
+    Token next_token();
 
 private:
     std::string code;
