@@ -7,7 +7,9 @@ CONFIG += thread
 CONFIG -= qt
 
 HEADERS += \
-    tst_tokenizer.h
+    tst_tokenizer.h \
+    ../JS/tokenizer.h \
+    ../JS/token.h \
 
 SOURCES += \
         main.cpp \

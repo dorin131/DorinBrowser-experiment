@@ -4,6 +4,11 @@
 #include "token.h"
 #include "tokenizer.h"
 #include "statements/program.h"
+#include "statements/variable_statement.h"
+#include "statements/if_statement.h"
+#include "statements/return_statement.h"
+#include "statements/function_declaration.h"
+#include "statements/expression_statement.h"
 
 /**
  * @brief The Parser class is defining the context-free grammar for our JS implementation
@@ -30,9 +35,11 @@ private:
 
     // Parsers
     Statement parse_statement();
-    //BlockStatement* parse_block_statement();
-    //VariableStatement* parse_variable_statement();
-    //...
+    VariableStatement parse_variable_statement();
+    IfStatement parse_if_statement();
+    ReturnStatement parse_return_statement();
+    FunctionDeclaration parse_function_declaration();
+    ExpressionStatement parse_expression_statement();
 };
 
 } //namespace js
