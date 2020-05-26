@@ -2,7 +2,8 @@
 
 namespace js {
 
-VariableStatement::VariableStatement()
+VariableStatement::VariableStatement(Identifier ident, Expression expr)
+    : identifier(ident), expression(expr)
 {
 
 }

@@ -3,6 +3,8 @@
 
 #include "token.h"
 #include "tokenizer.h"
+#include "expressions/expression.h"
+#include "expressions/identifier.h"
 #include "statements/program.h"
 #include "statements/variable_statement.h"
 #include "statements/if_statement.h"
@@ -32,6 +34,7 @@ private:
 
     void next_token();
     bool current_token_is(Token::Type);
+    bool peek_token_is(Token::Type);
 
     // Parsers
     Statement parse_statement();
@@ -40,6 +43,7 @@ private:
     ReturnStatement parse_return_statement();
     FunctionDeclaration parse_function_declaration();
     ExpressionStatement parse_expression_statement();
+    Expression parse_expression();
 };
 
 } //namespace js

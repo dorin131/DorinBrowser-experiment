@@ -1,5 +1,6 @@
 HEADERS += token.h\
     expressions/expression.h \
+    expressions/identifier.h \
     node.h \
     parser.h \
     statements/expression_statement.h \
@@ -13,6 +14,7 @@ HEADERS += token.h\
 
 SOURCES +=\
     expressions/expression.cpp \
+    expressions/identifier.cpp \
     main.cpp \
     node.cpp \
     parser.cpp \

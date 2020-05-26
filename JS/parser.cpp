@@ -21,6 +21,11 @@ bool Parser::current_token_is(Token::Type type)
     return current_token.get_type() == type;
 }
 
+bool Parser::peek_token_is(Token::Type type)
+{
+    return peek_token.get_type() == type;
+}
+
 Program Parser::parse_program()
 {
     Program program = Program();
@@ -45,24 +50,50 @@ Statement Parser::parse_statement()
     return parse_expression_statement();
 }
 
-VariableStatement Parser::parse_variable_statement() {
-    return VariableStatement();
+VariableStatement Parser::parse_variable_statement()
+{
+    next_token();
+    if (!current_token_is(Token::IDENTIFIER)) {
+
+    }
+    Token identifier = current_token;
+    next_token();
+
+    if (!current_token_is(Token::ASSIGN)) {
+
+    }
+    next_token();
+    Expression expression = parse_expression();
+
+    while (!current_token_is(Token::SEMICOLON)) {
+        next_token();
+    }
+    return VariableStatement(Identifier(identifier), expression);
 }
 
-IfStatement Parser::parse_if_statement() {
+IfStatement Parser::parse_if_statement()
+{
     return IfStatement();
 }
 
-ReturnStatement Parser::parse_return_statement() {
+ReturnStatement Parser::parse_return_statement()
+{
     return ReturnStatement();
 }
 
-FunctionDeclaration Parser::parse_function_declaration() {
+FunctionDeclaration Parser::parse_function_declaration()
+{
     return FunctionDeclaration();
 }
 
-ExpressionStatement Parser::parse_expression_statement() {
+ExpressionStatement Parser::parse_expression_statement()
+{
     return ExpressionStatement();
+}
+
+Expression Parser::parse_expression()
+{
+    return Expression();
 }
 
 } // namespace js
