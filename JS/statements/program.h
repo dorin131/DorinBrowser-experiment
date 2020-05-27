@@ -2,6 +2,7 @@
 #define PROGRAM_H
 
 #include <list>
+#include <iostream>
 
 #include "statement.h"
 
@@ -23,6 +24,15 @@ public:
      * @brief Add a SourceElement
      */
     void append(Statement);
+
+    std::string to_string()
+    {
+        std::string out = "Program";
+        for (Statement s : source_elements) {
+            out += "\n\t" + s.to_string();
+        }
+        return out + '\n';
+    };
 };
 
 } // namespace js

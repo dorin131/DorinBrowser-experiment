@@ -2,8 +2,8 @@
 #define VARIABLESTATEMENT_H
 
 #include "statement.h"
-#include "expressions/expression.h"
-#include "expressions/identifier.h"
+#include "../expressions/expression.h"
+#include "../expressions/identifier.h"
 
 namespace js {
 

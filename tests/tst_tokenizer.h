@@ -39,7 +39,6 @@ TEST(Tokenizer, GettingTokens)
         js::Token(js::Token::EOS, 0),
         js::Token(js::Token::EOS, 0),
     };
-
     for (js::Token expected_token : expected_tokens) {
         js::Token actual_token = t.next_token();
         EXPECT_EQ(actual_token, expected_token);

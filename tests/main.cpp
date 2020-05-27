@@ -1,4 +1,5 @@
 #include "tst_tokenizer.h"
+#include "tst_parser.h"
 
 #include <gtest/gtest.h>
 

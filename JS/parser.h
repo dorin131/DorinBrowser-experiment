@@ -1,6 +1,8 @@
 #ifndef PARSER_H
 #define PARSER_H
 
+#include <functional>
+
 #include "token.h"
 #include "tokenizer.h"
 #include "expressions/expression.h"
@@ -36,6 +38,9 @@ private:
     bool current_token_is(Token::Type);
     bool peek_token_is(Token::Type);
 
+    typedef std::function<Node(Parser&)> parse_prefix_function;
+    typedef std::function<Node(Expression)> parse_infix_function;
+
     // Parsers
     Statement parse_statement();
     VariableStatement parse_variable_statement();
@@ -44,6 +49,14 @@ private:
     FunctionDeclaration parse_function_declaration();
     ExpressionStatement parse_expression_statement();
     Expression parse_expression();
+
+//    const std::map<Token::Type, parse_prefix_function> parse_prefix_functions {
+//        {Token::IDENTIFIER, &Parser::parse_statement}
+//    };
+
+//    const std::map<Token::Type, parse_infix_function> parse_infix_functions {
+//        {Token::ADD, 0}
+//    };
 };
 
 } //namespace js
