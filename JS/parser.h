@@ -7,6 +7,8 @@
 #include "tokenizer.h"
 #include "expressions/expression.h"
 #include "expressions/identifier.h"
+#include "expressions/binary_expression.h"
+#include "expressions/literal.h"
 #include "statements/program.h"
 #include "statements/variable_statement.h"
 #include "statements/if_statement.h"
@@ -34,12 +36,28 @@ private:
     Token current_token;
     Token peek_token;
 
-    void next_token();
-    bool current_token_is(Token::Type);
-    bool peek_token_is(Token::Type);
+    enum Precedence
+    {
+        LOWEST,
+        EQUALS,
+        LESSGREATER,
+        SUM,
+        PRODUCT,
+        PREFIX,
+        CALL
+    };
 
-    typedef std::function<Node(Parser&)> parse_prefix_function;
-    typedef std::function<Node(Expression)> parse_infix_function;
+    std::map<Token::Type, Precedence> precedences = {
+        {Token::EQ, Precedence::EQUALS},
+        {Token::NE, Precedence::EQUALS},
+        {Token::LT, Precedence::LESSGREATER},
+        {Token::GT, Precedence::LESSGREATER},
+        {Token::ADD, Precedence::SUM},
+        {Token::SUB, Precedence::SUM},
+        {Token::DIV, Precedence::PRODUCT},
+        {Token::MUL, Precedence::PRODUCT},
+        {Token::LPAREN, Precedence::CALL}
+    };
 
     // Parsers
     Statement parse_statement();
@@ -48,15 +66,16 @@ private:
     ReturnStatement parse_return_statement();
     FunctionDeclaration parse_function_declaration();
     ExpressionStatement parse_expression_statement();
-    Expression parse_expression();
+    Expression parse_expression(Precedence);
+    Literal parse_literal_expression();
+    BinaryExpression parse_binary_expression(Expression);
 
-//    const std::map<Token::Type, parse_prefix_function> parse_prefix_functions {
-//        {Token::IDENTIFIER, &Parser::parse_statement}
-//    };
-
-//    const std::map<Token::Type, parse_infix_function> parse_infix_functions {
-//        {Token::ADD, 0}
-//    };
+    // Helpers
+    void next_token();
+    bool current_token_is(Token::Type);
+    bool peek_token_is(Token::Type);
+    Precedence peek_precedence();
+    Precedence current_precedence();
 };
 
 } //namespace js

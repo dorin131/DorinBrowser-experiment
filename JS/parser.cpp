@@ -26,6 +26,22 @@ bool Parser::peek_token_is(Token::Type type)
     return peek_token.get_type() == type;
 }
 
+Parser::Precedence Parser::current_precedence()
+{
+    if (precedences.find(current_token.get_type()) != precedences.end()) {
+        return precedences.at(current_token.get_type());
+    }
+    return Precedence::LOWEST;
+}
+
+Parser::Precedence Parser::peek_precedence()
+{
+    if (precedences.find(peek_token.get_type()) != precedences.end()) {
+        return precedences.at(peek_token.get_type());
+    }
+    return Precedence::LOWEST;
+}
+
 Program Parser::parse_program()
 {
     Program program = Program();
@@ -38,16 +54,63 @@ Program Parser::parse_program()
 
 Statement Parser::parse_statement()
 {
-    if (current_token_is(Token::VAR)) {
+    switch(current_token.get_type()) {
+    case(Token::VAR):
         return parse_variable_statement();
-    } else if (current_token_is(Token::IF)) {
+    case(Token::IF):
         return parse_if_statement();
-    } else if (current_token_is(Token::RETURN)) {
+    case(Token::RETURN):
         return parse_return_statement();
-    } else if (current_token_is(Token::FUNCTION)) {
+    case(Token::FUNCTION):
         return parse_function_declaration();
+    default:
+        return parse_expression_statement();
     }
-    return parse_expression_statement();
+}
+
+ExpressionStatement Parser::parse_expression_statement()
+{
+    return ExpressionStatement(parse_expression(Precedence::LOWEST));
+}
+
+Expression Parser::parse_expression(Precedence precedence)
+{
+    Expression left;
+
+    switch(current_token.get_type()) {
+    case(Token::NUMBER):
+    case(Token::STRING):
+        left = parse_literal_expression();
+        break;
+    default:
+        break;
+    }
+
+    while(!peek_token_is(Token::SEMICOLON) && !peek_token_is(Token::COMMA) && precedence < peek_precedence()) {
+        next_token();
+        switch(current_token.get_type()) {
+        case(Token::LPAREN):
+            //left = parse_call_expression(left);
+            //break;
+        default:
+            left = parse_binary_expression(left);
+        }
+    }
+
+    return left;
+}
+
+Literal Parser::parse_literal_expression()
+{
+    return Literal(current_token);
+}
+
+BinaryExpression Parser::parse_binary_expression(Expression left)
+{
+    Token token = current_token;
+    Precedence precedence = current_precedence();
+    next_token();
+    return BinaryExpression(token.get_value(), left, parse_expression(precedence));
 }
 
 VariableStatement Parser::parse_variable_statement()
@@ -63,7 +126,7 @@ VariableStatement Parser::parse_variable_statement()
 
     }
     next_token();
-    Expression expression = parse_expression();
+    Expression expression = parse_expression(Precedence::LOWEST);
 
     while (!current_token_is(Token::SEMICOLON)) {
         next_token();
@@ -84,16 +147,6 @@ ReturnStatement Parser::parse_return_statement()
 FunctionDeclaration Parser::parse_function_declaration()
 {
     return FunctionDeclaration();
-}
-
-ExpressionStatement Parser::parse_expression_statement()
-{
-    return ExpressionStatement();
-}
-
-Expression Parser::parse_expression()
-{
-    return Expression();
 }
 
 } // namespace js

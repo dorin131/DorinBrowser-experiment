@@ -22,6 +22,8 @@ HEADERS += \
     ../JS/statements/variable_statement.h \
     ../JS/expressions/expression.h \
     ../JS/expressions/identifier.h \
+    ../JS/expressions/literal.h \
+    ../JS/expressions/binary_expression.h \
 
 SOURCES += \
         main.cpp \
@@ -38,3 +40,5 @@ SOURCES += \
         ../JS/statements/variable_statement.cpp \
         ../JS/expressions/expression.cpp \
         ../JS/expressions/identifier.cpp \
+        ../JS/expressions/literal.cpp \
+        ../JS/expressions/binary_expression.cpp \

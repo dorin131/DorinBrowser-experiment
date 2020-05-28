@@ -9,6 +9,8 @@ class Expression: public Node
 {
 public:
     Expression();
+
+
 };
 
 } // namespace js
