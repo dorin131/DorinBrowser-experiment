@@ -13,6 +13,8 @@ HEADERS += \
     ../JS/token.h \
     ../JS/parser.h \
     ../JS/node.h \
+    ../JS/value.h \
+    ../JS/interpreter.h \
     ../JS/statements/program.h \
     ../JS/statements/statement.h \
     ../JS/statements/expression_statement.h \
@@ -31,6 +33,8 @@ SOURCES += \
         ../JS/token.cpp \
         ../JS/parser.cpp \
         ../JS/node.cpp \
+        ../JS/value.cpp \
+        ../JS/interpreter.cpp \
         ../JS/statements/program.cpp \
         ../JS/statements/statement.cpp \
         ../JS/statements/expression_statement.cpp \

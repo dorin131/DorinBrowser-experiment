@@ -10,6 +10,7 @@ class Literal : public Expression
 {
 public:
     Literal(Token);
+    Value execute();
 private:
     Token token;
 };

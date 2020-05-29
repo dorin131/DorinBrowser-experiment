@@ -3,6 +3,8 @@
 
 #include <iostream>
 
+#include "value.h"
+
 namespace js {
 
 class Node
@@ -11,6 +13,7 @@ public:
     Node();
 
     std::string to_string();
+    Value execute();
 };
 
 } // namespace js
