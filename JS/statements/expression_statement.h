@@ -11,6 +11,8 @@ class ExpressionStatement : public Statement
 public:
     ExpressionStatement(Expression*);
 
+    inline Expression* get_expression() { return expression; };
+
     Value execute() override;
     void dump(int indent) override;
     std::string get_type() override;

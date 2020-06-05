@@ -11,6 +11,8 @@ class Literal : public Expression
 public:
     Literal(Token);
 
+    inline Token get_token() { return token; };
+
     Value execute() override;
     void dump(int indent) override;
     std::string get_type() override;

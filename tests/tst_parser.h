@@ -16,7 +16,11 @@ TEST(Parser, EmptyCode)
     js::Program program = p.parse_program();
 
     EXPECT_EQ(program.get_type(), "Program");
-    EXPECT_EQ(program.get_elements().front()->get_type(), "ExpressionStatement");
+    auto expression_statement = program.get_elements().front();
+    EXPECT_EQ(expression_statement->get_type(), "ExpressionStatement");
+    auto expression = static_cast<js::ExpressionStatement*>(expression_statement)->get_expression();
+    EXPECT_EQ(expression->get_type(), "Literal");
+    EXPECT_EQ(static_cast<js::Literal*>(expression)->get_token().get_value(), "3");
 }
 
 #endif // TST_PARSER_H
