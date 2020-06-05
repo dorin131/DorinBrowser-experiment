@@ -9,9 +9,13 @@ namespace js {
 class ExpressionStatement : public Statement
 {
 public:
-    ExpressionStatement(Expression);
+    ExpressionStatement(Expression*);
+
+    Value execute() override;
+    void dump(int indent) override;
+    std::string get_type() override;
 private:
-    Expression expression;
+    Expression* expression;
 };
 
 } //namespace js

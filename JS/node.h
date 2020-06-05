@@ -11,9 +11,11 @@ class Node
 {
 public:
     Node();
+    virtual ~Node();
 
-    std::string to_string();
-    Value execute();
+    virtual std::string get_type() = 0;
+    virtual void dump(int indent) = 0;
+    virtual Value execute() = 0;
 };
 
 } // namespace js

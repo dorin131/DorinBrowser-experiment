@@ -10,6 +10,9 @@ class Identifier : public Expression
 {
 public:
     Identifier(Token token);
+    std::string get_type() override;
+    void dump(int indent) override;
+    Value execute() override;
 private:
     Token token;
 };

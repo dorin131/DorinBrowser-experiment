@@ -9,6 +9,10 @@ class IfStatement : public Statement
 {
 public:
     IfStatement();
+
+    Value execute() override;
+    void dump(int indent) override;
+    std::string get_type() override;
 };
 
 } // namespace js

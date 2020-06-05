@@ -10,12 +10,14 @@ namespace js {
 class BinaryExpression : public Expression
 {
 public:
-    BinaryExpression(std::string op, Node left, Node right);
-    Value execute();
+    BinaryExpression(std::string op, Node* left, Node* right);
+    Value execute() override;
+    std::string get_type() override;
+    void dump(int indent) override;
 private:
     std::string op;
-    Node left;
-    Node right;
+    Node* left;
+    Node* right;
 };
 
 } // namespace js

@@ -60,15 +60,15 @@ private:
     };
 
     // Parsers
-    Statement parse_statement();
-    VariableStatement parse_variable_statement();
-    IfStatement parse_if_statement();
-    ReturnStatement parse_return_statement();
-    FunctionDeclaration parse_function_declaration();
-    ExpressionStatement parse_expression_statement();
-    Expression parse_expression(Precedence);
-    Literal parse_literal_expression();
-    BinaryExpression parse_binary_expression(Expression);
+    Statement* parse_statement();
+    VariableStatement* parse_variable_statement();
+    IfStatement* parse_if_statement();
+    ReturnStatement* parse_return_statement();
+    FunctionDeclaration* parse_function_declaration();
+    ExpressionStatement* parse_expression_statement();
+    Expression* parse_expression(Precedence);
+    Literal* parse_literal_expression();
+    BinaryExpression* parse_binary_expression(Expression*);
 
     // Helpers
     void next_token();

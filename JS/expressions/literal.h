@@ -10,7 +10,10 @@ class Literal : public Expression
 {
 public:
     Literal(Token);
-    Value execute();
+
+    Value execute() override;
+    void dump(int indent) override;
+    std::string get_type() override;
 private:
     Token token;
 };

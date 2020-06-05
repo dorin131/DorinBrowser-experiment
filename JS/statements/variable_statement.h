@@ -10,12 +10,15 @@ namespace js {
 class VariableStatement : public Statement
 {
 public:
-    VariableStatement(Identifier ident, Expression expr);
+    VariableStatement(Identifier ident, Expression* expr);
+
+    Value execute() override;
+    void dump(int indent) override;
+    std::string get_type() override;
 private:
     Identifier identifier;
-    Expression expression;
+    Expression* expression;
 };
-
 } // namespace js
 
 #endif // VARIABLESTATEMENT_H

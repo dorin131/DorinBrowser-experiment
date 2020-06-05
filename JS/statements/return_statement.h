@@ -9,6 +9,10 @@ class ReturnStatement : public Statement
 {
 public:
     ReturnStatement();
+
+    Value execute() override;
+    void dump(int indent) override;
+    std::string get_type() override;
 };
 
 } // namespace js

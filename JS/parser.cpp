@@ -52,7 +52,7 @@ Program Parser::parse_program()
     return program;
 }
 
-Statement Parser::parse_statement()
+Statement* Parser::parse_statement()
 {
     switch(current_token.get_type()) {
     case(Token::VAR):
@@ -68,14 +68,14 @@ Statement Parser::parse_statement()
     }
 }
 
-ExpressionStatement Parser::parse_expression_statement()
+ExpressionStatement* Parser::parse_expression_statement()
 {
-    return ExpressionStatement(parse_expression(Precedence::LOWEST));
+    return new ExpressionStatement(parse_expression(Precedence::LOWEST));
 }
 
-Expression Parser::parse_expression(Precedence precedence)
+Expression* Parser::parse_expression(Precedence precedence)
 {
-    Expression left;
+    Expression* left;
 
     switch(current_token.get_type()) {
     case(Token::NUMBER):
@@ -100,20 +100,20 @@ Expression Parser::parse_expression(Precedence precedence)
     return left;
 }
 
-Literal Parser::parse_literal_expression()
+Literal* Parser::parse_literal_expression()
 {
-    return Literal(current_token);
+    return new Literal(current_token);
 }
 
-BinaryExpression Parser::parse_binary_expression(Expression left)
+BinaryExpression* Parser::parse_binary_expression(Expression* left)
 {
     Token token = current_token;
     Precedence precedence = current_precedence();
     next_token();
-    return BinaryExpression(token.get_value(), left, parse_expression(precedence));
+    return new BinaryExpression(token.get_value(), left, parse_expression(precedence));
 }
 
-VariableStatement Parser::parse_variable_statement()
+VariableStatement* Parser::parse_variable_statement()
 {
     next_token();
     if (!current_token_is(Token::IDENTIFIER)) {
@@ -126,27 +126,27 @@ VariableStatement Parser::parse_variable_statement()
 
     }
     next_token();
-    Expression expression = parse_expression(Precedence::LOWEST);
+    Expression* expression = parse_expression(Precedence::LOWEST);
 
     while (!current_token_is(Token::SEMICOLON)) {
         next_token();
     }
-    return VariableStatement(Identifier(identifier), expression);
+    return new VariableStatement(Identifier(identifier), expression);
 }
 
-IfStatement Parser::parse_if_statement()
+IfStatement* Parser::parse_if_statement()
 {
-    return IfStatement();
+    return new IfStatement();
 }
 
-ReturnStatement Parser::parse_return_statement()
+ReturnStatement* Parser::parse_return_statement()
 {
-    return ReturnStatement();
+    return new ReturnStatement();
 }
 
-FunctionDeclaration Parser::parse_function_declaration()
+FunctionDeclaration* Parser::parse_function_declaration()
 {
-    return FunctionDeclaration();
+    return new FunctionDeclaration();
 }
 
 } // namespace js

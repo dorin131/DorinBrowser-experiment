@@ -21,4 +21,14 @@ Value Literal::execute()
     }
 }
 
+void Literal::dump(int indent)
+{
+    std::cout << indent << "Literal: " << token.get_value();
+}
+
+std::string Literal::get_type()
+{
+    return "Literal";
+}
+
 } // namespace js

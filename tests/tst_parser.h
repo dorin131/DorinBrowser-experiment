@@ -13,10 +13,10 @@ TEST(Parser, EmptyCode)
 {
     js::Tokenizer t = js::Tokenizer("3");
     auto p = js::Parser(t);
-    auto program = p.parse_program();
-    auto result = program.to_string();
+    js::Program program = p.parse_program();
 
-    EXPECT_EQ(result, "Program\n\tNode\n");
+    EXPECT_EQ(program.get_type(), "Program");
+    EXPECT_EQ(program.get_elements().front()->get_type(), "ExpressionStatement");
 }
 
 #endif // TST_PARSER_H

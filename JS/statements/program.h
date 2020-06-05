@@ -16,23 +16,19 @@ class Program: public Statement
     /**
      * @brief A list of Statements
      */
-    std::list<Statement> source_elements;
+    std::list<Statement*> source_elements;
 public:
     Program();
 
     /**
      * @brief Add a SourceElement
      */
-    void append(Statement);
+    void append(Statement*);
+    std::list<Statement*> get_elements();
 
-    std::string to_string()
-    {
-        std::string out = "Program";
-        for (Statement s : source_elements) {
-            out += "\n\t" + s.to_string();
-        }
-        return out + '\n';
-    };
+    Value execute() override;
+    void dump(int indent) override;
+    std::string get_type() override;
 };
 
 } // namespace js
