@@ -11,8 +11,10 @@ class BinaryExpression : public Expression
 {
 public:
     BinaryExpression(std::string op, Node* left, Node* right);
+
+    // Overrides
+    inline std::string get_type() override { return "BinaryExpression"; };
     Value execute() override;
-    std::string get_type() override;
     void dump(int indent) override;
 private:
     std::string op;

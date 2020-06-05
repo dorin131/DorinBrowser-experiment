@@ -10,9 +10,10 @@ class IfStatement : public Statement
 public:
     IfStatement();
 
+    // Overrides
     Value execute() override;
     void dump(int indent) override;
-    std::string get_type() override;
+    inline std::string get_type() override { return "IfStatement"; };
 };
 
 } // namespace js

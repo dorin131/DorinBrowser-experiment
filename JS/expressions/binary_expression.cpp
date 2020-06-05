@@ -17,11 +17,6 @@ Value BinaryExpression::execute()
     return Value(Value::NUMBER, "5");
 }
 
-std::string BinaryExpression::get_type()
-{
-    return "BinaryExpression";
-};
-
 void BinaryExpression::dump(int indent)
 {
     std::cout << indent << "BinaryExpression";

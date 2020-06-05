@@ -10,7 +10,8 @@ class Expression: public Node
 public:
     Expression();
 
-    std::string get_type() override;
+    // Overrides
+    inline std::string get_type() override { return "Expression"; };
     void dump(int indent) override;
 };
 

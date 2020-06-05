@@ -7,11 +7,6 @@ ExpressionStatement::ExpressionStatement(Expression* exp): expression(exp)
 
 }
 
-std::string ExpressionStatement::get_type()
-{
-    return "ExpressionStatement";
-};
-
 void ExpressionStatement::dump(int indent)
 {
     std::cout << indent << "ExpressionStatement";

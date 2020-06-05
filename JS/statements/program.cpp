@@ -9,17 +9,7 @@ Program::Program()
 
 void Program::append(Statement* source_element)
 {
-    this->source_elements.push_front(source_element);
-}
-
-std::list<Statement*> Program::get_elements()
-{
-    return this->source_elements;
-}
-
-std::string Program::get_type()
-{
-    return "Program";
+    source_elements.push_front(source_element);
 }
 
 void Program::dump(int indent)

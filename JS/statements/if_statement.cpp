@@ -7,11 +7,6 @@ IfStatement::IfStatement()
 
 }
 
-std::string IfStatement::get_type()
-{
-    return "IfStatement";
-};
-
 void IfStatement::dump(int indent)
 {
     std::cout << indent << "IfStatement";

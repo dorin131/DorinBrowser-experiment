@@ -7,11 +7,6 @@ FunctionDeclaration::FunctionDeclaration()
 
 }
 
-std::string FunctionDeclaration::get_type()
-{
-    return "FunctionDeclaration";
-};
-
 void FunctionDeclaration::dump(int indent)
 {
     std::cout << indent << "FunctionDeclaration";
