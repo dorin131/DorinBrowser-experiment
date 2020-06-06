@@ -18,7 +18,7 @@ public:
 
     // Overrides
     inline std::string get_type() override { return "BinaryExpression"; };
-    Value execute() override;
+    Value execute(Interpreter*) override;
     void dump(int indent) override;
 private:
     std::string op;

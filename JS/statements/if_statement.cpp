@@ -12,7 +12,7 @@ void IfStatement::dump(int indent)
     std::cout << indent << "IfStatement";
 };
 
-Value IfStatement::execute()
+Value IfStatement::execute(Interpreter*)
 {
     return Value(Value::UNDEFINED, "");
 };

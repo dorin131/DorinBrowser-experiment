@@ -14,7 +14,7 @@ public:
     inline Token get_token() { return token; };
 
     // Overrides
-    Value execute() override;
+    Value execute(Interpreter*) override;
     void dump(int indent) override;
     inline std::string get_type() override { return "Literal"; };
 private:

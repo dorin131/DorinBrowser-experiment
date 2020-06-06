@@ -1,11 +1,13 @@
-HEADERS += token.h\
+HEADERS += interpreter.h \
+    token.h \
+    node.h \
+    parser.h \
+    tokenizer.h \
+    value.h \
     expressions/binary_expression.h \
     expressions/expression.h \
     expressions/identifier.h \
     expressions/literal.h \
-    interpreter.h \
-    node.h \
-    parser.h \
     statements/block_statement.h \
     statements/expression_statement.h \
     statements/function_declaration.h \
@@ -14,18 +16,18 @@ HEADERS += token.h\
     statements/return_statement.h \
     statements/statement.h \
     statements/variable_statement.h \
-    tokenizer.h \
-    value.h
 
-SOURCES +=\
+SOURCES += interpreter.cpp \
+    token.cpp \
+    main.cpp \
+    node.cpp \
+    parser.cpp \
+    tokenizer.cpp \
+    value.cpp \
     expressions/binary_expression.cpp \
     expressions/expression.cpp \
     expressions/identifier.cpp \
     expressions/literal.cpp \
-    interpreter.cpp \
-    main.cpp \
-    node.cpp \
-    parser.cpp \
     statements/block_statement.cpp \
     statements/expression_statement.cpp \
     statements/function_declaration.cpp \
@@ -34,6 +36,3 @@ SOURCES +=\
     statements/return_statement.cpp \
     statements/statement.cpp \
     statements/variable_statement.cpp \
-    token.cpp \
-    tokenizer.cpp \
-    value.cpp

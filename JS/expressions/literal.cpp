@@ -8,7 +8,7 @@ Literal::Literal(Token t)
 
 }
 
-Value Literal::execute()
+Value Literal::execute(Interpreter*)
 {
     switch(token.get_type()) {
     case(Token::STRING):

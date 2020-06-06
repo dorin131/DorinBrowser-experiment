@@ -8,7 +8,7 @@ BinaryExpression::BinaryExpression(std::string op, Node* left, Node* right)
 
 }
 
-Value BinaryExpression::execute()
+Value BinaryExpression::execute(Interpreter*)
 {
 //    Value l = left.execute();
 //    Value r = right.execute();

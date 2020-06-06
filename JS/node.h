@@ -7,6 +7,9 @@
 
 namespace js {
 
+// Forward declarations
+class Interpreter;
+
 class Node
 {
 public:
@@ -15,7 +18,7 @@ public:
 
     virtual std::string get_type() = 0;
     virtual void dump(int indent) = 0;
-    virtual Value execute() = 0;
+    virtual Value execute(Interpreter*) = 0;
 protected:
     inline void print_indent(int n) {
         for (int i = n; i < n * 3; i++) std::cout << " ";

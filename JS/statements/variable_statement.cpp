@@ -13,7 +13,7 @@ void VariableStatement::dump(int indent)
     std::cout << indent << "VariableStatement";
 }
 
-Value VariableStatement::execute()
+Value VariableStatement::execute(Interpreter*)
 {
     return Value(Value::UNDEFINED, "");
 };

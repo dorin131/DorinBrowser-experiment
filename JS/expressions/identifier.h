@@ -14,7 +14,7 @@ public:
     // Overrides
     inline std::string get_type() override { return "Identifier"; };
     void dump(int indent) override;
-    Value execute() override;
+    Value execute(Interpreter*) override;
 private:
     Token token;
 };

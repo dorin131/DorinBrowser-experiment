@@ -14,7 +14,7 @@ void ExpressionStatement::dump(int indent)
     expression->dump(indent + 1);
 };
 
-Value ExpressionStatement::execute()
+Value ExpressionStatement::execute(Interpreter*)
 {
     return Value(Value::UNDEFINED, "");
 };

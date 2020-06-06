@@ -11,7 +11,7 @@ public:
     IfStatement();
 
     // Overrides
-    Value execute() override;
+    Value execute(Interpreter*) override;
     void dump(int indent) override;
     inline std::string get_type() override { return "IfStatement"; };
 };

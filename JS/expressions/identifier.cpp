@@ -12,7 +12,7 @@ void Identifier::dump(int indent)
     std::cout << indent << "Identifier";
 };
 
-Value Identifier::execute()
+Value Identifier::execute(Interpreter*)
 {
     return Value(Value::UNDEFINED, "");
 };
