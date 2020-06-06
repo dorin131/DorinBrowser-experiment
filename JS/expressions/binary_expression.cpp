@@ -8,13 +8,12 @@ BinaryExpression::BinaryExpression(std::string op, Node* left, Node* right)
 
 }
 
-Value BinaryExpression::execute(Interpreter*)
+Value BinaryExpression::execute(Interpreter* i)
 {
-//    Value l = left.execute();
-//    Value r = right.execute();
+    Value l = left->execute(i);
+    Value r = right->execute(i);
 
-//    return Value(Value::NUMBER, std::to_string(std::stoi(l.get_value()) + std::stoi(r.get_value())));
-    return Value(Value::NUMBER, "5");
+    return Value(Value::NUMBER, std::to_string(std::stoi(l.get_value()) + std::stoi(r.get_value())));
 }
 
 void BinaryExpression::dump(int indent)
