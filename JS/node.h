@@ -17,7 +17,7 @@ public:
     virtual void dump(int indent) = 0;
     virtual Value execute() = 0;
 protected:
-    inline void print_intent(int n) {
+    inline void print_indent(int n) {
         for (int i = n; i < n * 3; i++) std::cout << " ";
     };
 };

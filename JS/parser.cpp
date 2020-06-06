@@ -2,8 +2,8 @@
 
 namespace js {
 
-Parser::Parser(Tokenizer tokenizer)
-    : tokenizer(tokenizer)
+Parser::Parser(Tokenizer t)
+    : tokenizer(t)
     , current_token(tokenizer.next_token())
     , peek_token(tokenizer.next_token())
 {

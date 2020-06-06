@@ -45,4 +45,23 @@ TEST(Tokenizer, GettingTokens)
     }
 }
 
+TEST(Tokenizer, GettingTokens1)
+{
+    std::string input = "1+2";
+    js::Tokenizer t = js::Tokenizer(input);
+
+    std::vector<js::Token> expected_tokens = {
+        js::Token(js::Token::NUMBER, "1"),
+        js::Token(js::Token::ADD, "+"),
+        js::Token(js::Token::NUMBER, "2"),
+        js::Token(js::Token::EOS, 0),
+        js::Token(js::Token::EOS, 0),
+        js::Token(js::Token::EOS, 0),
+    };
+    for (js::Token expected_token : expected_tokens) {
+        js::Token actual_token = t.next_token();
+        EXPECT_EQ(actual_token, expected_token);
+    }
+}
+
 #endif // TST_TEST_H

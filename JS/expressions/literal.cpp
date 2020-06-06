@@ -23,9 +23,9 @@ Value Literal::execute()
 
 void Literal::dump(int indent)
 {
-    print_intent(indent);
+    print_indent(indent);
     std::cout << "Literal\n";
-    print_intent(indent + 1);
+    print_indent(indent + 1);
     std::cout << token.get_value() << std::endl;
 }
 

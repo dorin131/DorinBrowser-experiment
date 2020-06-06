@@ -19,7 +19,12 @@ Value BinaryExpression::execute()
 
 void BinaryExpression::dump(int indent)
 {
-    std::cout << indent << "BinaryExpression";
+    print_indent(indent);
+    std::cout << "BinaryExpression" << std::endl;
+    print_indent(indent + 1);
+    std::cout << op << std::endl;
+    left->dump(indent + 2);
+    right->dump(indent + 2);
 };
 
 } // namespace js

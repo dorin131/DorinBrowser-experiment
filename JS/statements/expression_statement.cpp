@@ -9,7 +9,7 @@ ExpressionStatement::ExpressionStatement(Expression* exp): expression(exp)
 
 void ExpressionStatement::dump(int indent)
 {
-    print_intent(indent);
+    print_indent(indent);
     std::cout << "ExpressionStatement\n";
     expression->dump(indent + 1);
 };
