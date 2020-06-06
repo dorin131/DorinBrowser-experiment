@@ -16,7 +16,6 @@ public:
     Program();
 
     // Overrides
-    Value execute(Interpreter*) override;
     void dump(int indent) override;
     inline std::string get_type() override { return "Program"; };
 };

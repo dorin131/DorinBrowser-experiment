@@ -15,9 +15,4 @@ void Program::dump(int indent)
     }
 };
 
-Value Program::execute(Interpreter*)
-{
-    return Value(Value::UNDEFINED, "");
-};
-
 } // namespace js

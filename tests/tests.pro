@@ -7,6 +7,7 @@ CONFIG += thread
 CONFIG -= qt
 
 HEADERS += \
+    tst_interpreter.h \
     tst_parser.h \
     tst_tokenizer.h \
     ../JS/tokenizer.h \

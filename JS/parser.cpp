@@ -42,11 +42,11 @@ Parser::Precedence Parser::peek_precedence()
     return Precedence::LOWEST;
 }
 
-Program Parser::parse_program()
+Program* Parser::parse_program()
 {
-    Program program = Program();
+    Program* program = new Program();
     while (!current_token_is(Token::EOS)) {
-        program.append(parse_statement());
+        program->append(parse_statement());
         next_token();
     }
     return program;

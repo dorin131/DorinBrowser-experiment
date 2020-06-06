@@ -30,7 +30,7 @@ class Parser
 public:
     Parser(Tokenizer);
 
-    Program parse_program();
+    Program* parse_program();
 private:
     Tokenizer tokenizer;
     Token current_token;

@@ -13,11 +13,11 @@ TEST(Parser, Literal)
 {
     js::Tokenizer t = js::Tokenizer("3");
     auto p = js::Parser(t);
-    js::Program program = p.parse_program();
-    program.dump(0);
+    js::Program* program = p.parse_program();
+    program->dump(0);
 
-    EXPECT_EQ(program.get_type(), "Program");
-    auto expression_statement = program.get_elements().front();
+    EXPECT_EQ(program->get_type(), "Program");
+    auto expression_statement = program->get_elements().front();
     EXPECT_EQ(expression_statement->get_type(), "ExpressionStatement");
     auto expression = static_cast<js::ExpressionStatement*>(expression_statement)->get_expression();
     EXPECT_EQ(expression->get_type(), "Literal");
@@ -28,11 +28,11 @@ TEST(Parser, BinaryExpresion)
 {
     js::Tokenizer t = js::Tokenizer("1+2");
     auto p = js::Parser(t);
-    js::Program program = p.parse_program();
-    program.dump(0);
+    js::Program* program = p.parse_program();
+    program->dump(0);
 
-    EXPECT_EQ(program.get_type(), "Program");
-    auto expression_statement = program.get_elements().front();
+    EXPECT_EQ(program->get_type(), "Program");
+    auto expression_statement = program->get_elements().front();
     EXPECT_EQ(expression_statement->get_type(), "ExpressionStatement");
     auto expression = static_cast<js::ExpressionStatement*>(expression_statement)->get_expression();
     EXPECT_EQ(expression->get_type(), "BinaryExpression");
