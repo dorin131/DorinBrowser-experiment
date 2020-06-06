@@ -18,6 +18,7 @@ HEADERS += \
     ../JS/statements/program.h \
     ../JS/statements/statement.h \
     ../JS/statements/expression_statement.h \
+    ../JS/statements/block_statement.h \
     ../JS/statements/function_declaration.h \
     ../JS/statements/if_statement.h \
     ../JS/statements/return_statement.h \
@@ -38,6 +39,7 @@ SOURCES += \
         ../JS/statements/program.cpp \
         ../JS/statements/statement.cpp \
         ../JS/statements/expression_statement.cpp \
+        ../JS/statements/block_statement.cpp \
         ../JS/statements/function_declaration.cpp \
         ../JS/statements/if_statement.cpp \
         ../JS/statements/return_statement.cpp \
