@@ -14,9 +14,9 @@ void Program::append(Statement* source_element)
 
 void Program::dump(int indent)
 {
-    std::cout << indent << "Program";
+    std::cout << "Program\n";
     for (Statement* s : this->source_elements) {
-        s->dump(indent + 2);
+        s->dump(indent + 1);
     }
 };
 

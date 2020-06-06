@@ -9,7 +9,9 @@ ExpressionStatement::ExpressionStatement(Expression* exp): expression(exp)
 
 void ExpressionStatement::dump(int indent)
 {
-    std::cout << indent << "ExpressionStatement";
+    print_intent(indent);
+    std::cout << "ExpressionStatement\n";
+    expression->dump(indent + 1);
 };
 
 Value ExpressionStatement::execute()

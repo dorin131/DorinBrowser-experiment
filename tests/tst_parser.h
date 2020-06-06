@@ -14,6 +14,7 @@ TEST(Parser, EmptyCode)
     js::Tokenizer t = js::Tokenizer("3");
     auto p = js::Parser(t);
     js::Program program = p.parse_program();
+    program.dump(0);
 
     EXPECT_EQ(program.get_type(), "Program");
     auto expression_statement = program.get_elements().front();

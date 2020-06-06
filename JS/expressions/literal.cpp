@@ -23,7 +23,10 @@ Value Literal::execute()
 
 void Literal::dump(int indent)
 {
-    std::cout << indent << "Literal: " << token.get_value();
+    print_intent(indent);
+    std::cout << "Literal\n";
+    print_intent(indent + 1);
+    std::cout << token.get_value() << std::endl;
 }
 
 } // namespace js
