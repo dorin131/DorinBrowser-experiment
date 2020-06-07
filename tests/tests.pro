@@ -10,6 +10,7 @@ HEADERS += \
     tst_interpreter.h \
     tst_parser.h \
     tst_tokenizer.h \
+    ../JS/error.h \
     ../JS/tokenizer.h \
     ../JS/token.h \
     ../JS/parser.h \
@@ -31,6 +32,7 @@ HEADERS += \
 
 SOURCES += \
         main.cpp \
+        ../JS/error.cpp \
         ../JS/tokenizer.cpp \
         ../JS/token.cpp \
         ../JS/parser.cpp \

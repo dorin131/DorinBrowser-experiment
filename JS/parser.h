@@ -3,6 +3,7 @@
 
 #include <functional>
 
+#include "error.h"
 #include "token.h"
 #include "tokenizer.h"
 #include "expressions/expression.h"
@@ -68,6 +69,7 @@ private:
     ExpressionStatement* parse_expression_statement();
     Expression* parse_expression(Precedence);
     Literal* parse_literal_expression();
+    Expression* parse_grouped_expression();
     BinaryExpression* parse_binary_expression(Expression*);
 
     // Helpers

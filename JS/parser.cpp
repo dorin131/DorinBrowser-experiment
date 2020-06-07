@@ -82,8 +82,11 @@ Expression* Parser::parse_expression(Precedence precedence)
     case(Token::STRING):
         left = parse_literal_expression();
         break;
-    default:
+    case(Token::LPAREN):
+        left = parse_grouped_expression();
         break;
+    default:
+        throw SyntaxError("Unexpected token when parsing expression: " + current_token.get_value());
     }
 
     while(!peek_token_is(Token::SEMICOLON) && !peek_token_is(Token::COMMA) && precedence < peek_precedence()) {
@@ -115,6 +118,18 @@ BinaryExpression* Parser::parse_binary_expression(Expression* left)
     Precedence precedence = current_precedence();
     next_token();
     return new BinaryExpression(token.get_value(), left, parse_expression(precedence));
+}
+
+Expression* Parser::parse_grouped_expression()
+{
+    next_token();
+    auto expression = parse_expression(Precedence::LOWEST);
+
+    if (!peek_token_is(Token::RPAREN)) {
+        throw SyntaxError("Expected closing parenthesys");
+    }
+    next_token();
+    return expression;
 }
 
 VariableStatement* Parser::parse_variable_statement()

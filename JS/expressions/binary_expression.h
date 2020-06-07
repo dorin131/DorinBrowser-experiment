@@ -3,6 +3,7 @@
 
 #include <iostream>
 
+#include "../error.h"
 #include "expression.h"
 
 namespace js {
@@ -24,6 +25,9 @@ private:
     std::string op;
     Node* left;
     Node* right;
+
+    Value string_arithmetic(Value, Value);
+    Value number_arithmetic(Value, Value);
 };
 
 } // namespace js

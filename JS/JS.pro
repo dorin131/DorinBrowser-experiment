@@ -1,4 +1,5 @@
 HEADERS += interpreter.h \
+    error.h \
     token.h \
     node.h \
     parser.h \
@@ -18,6 +19,7 @@ HEADERS += interpreter.h \
     statements/variable_statement.h \
 
 SOURCES += interpreter.cpp \
+    error.cpp \
     token.cpp \
     main.cpp \
     node.cpp \

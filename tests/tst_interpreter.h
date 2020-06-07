@@ -33,7 +33,25 @@ TEST(Interpreter, InterpretExpression2)
 
     program->dump(0);
 
-    EXPECT_EQ(result.get_value(), "5");
+    EXPECT_EQ(result.get_value(), "6");
+}
+
+TEST(Interpreter, InterpretExpression3)
+{
+    js::Tokenizer t = js::Tokenizer("2 * (3 + 1);");
+    auto p = js::Parser(t);
+    js::Program* program;
+    try {
+        program = p.parse_program();
+    } catch (js::SyntaxError e) {
+        std::cerr << "Parsing error: " + e.message << std::endl;
+    }
+    js::Interpreter interpreter;
+    auto result = interpreter.run(program);
+
+    program->dump(0);
+
+    EXPECT_EQ(result.get_value(), "8");
 }
 
 #endif // TST_INTERPRETER_H
