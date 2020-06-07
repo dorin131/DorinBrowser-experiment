@@ -23,4 +23,17 @@ TEST(Interpreter, InterpretExpression)
     EXPECT_EQ(result.get_value(), "3");
 }
 
+TEST(Interpreter, InterpretExpression2)
+{
+    js::Tokenizer t = js::Tokenizer("2*3;");
+    auto p = js::Parser(t);
+    js::Program* program = p.parse_program();
+    js::Interpreter interpreter;
+    auto result = interpreter.run(program);
+
+    program->dump(0);
+
+    EXPECT_EQ(result.get_value(), "5");
+}
+
 #endif // TST_INTERPRETER_H

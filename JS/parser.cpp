@@ -97,6 +97,10 @@ Expression* Parser::parse_expression(Precedence precedence)
         }
     }
 
+    if (peek_token_is(Token::SEMICOLON)) {
+        next_token();
+    }
+
     return left;
 }
 
