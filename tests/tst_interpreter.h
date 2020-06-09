@@ -90,4 +90,22 @@ TEST(Interpreter, InterpretExpression5)
     EXPECT_EQ(result.get_value(), "hello100");
 }
 
+TEST(Interpreter, InterpretExpression6)
+{
+    js::Tokenizer t = js::Tokenizer("2 * 2; 3 * 3");
+    auto p = js::Parser(t);
+    js::Program* program;
+    try {
+        program = p.parse_program();
+    } catch (js::SyntaxError e) {
+        std::cerr << "Parsing error: " + e.message << std::endl;
+    }
+    js::Interpreter interpreter;
+    auto result = interpreter.run(program);
+
+    program->dump(0);
+
+    EXPECT_EQ(result.get_value(), "9");
+}
+
 #endif // TST_INTERPRETER_H

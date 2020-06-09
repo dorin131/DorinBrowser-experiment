@@ -10,7 +10,7 @@ BlockStatement::BlockStatement()
 
 void BlockStatement::append(Statement* source_element)
 {
-    source_elements.push_front(source_element);
+    source_elements.push_back(source_element);
 }
 
 Value BlockStatement::execute(Interpreter& i)
