@@ -13,7 +13,7 @@ public:
     VariableStatement(Identifier ident, Expression* expr);
 
     // Overrides
-    Value execute(Interpreter*) override;
+    Value execute(Interpreter&) override;
     void dump(int indent) override;
     inline std::string get_type() override { return "VariableStatement"; };
 private:

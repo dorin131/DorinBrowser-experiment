@@ -14,7 +14,7 @@ public:
     inline Expression* get_expression() { return expression; };
 
     // Overrides
-    Value execute(Interpreter*) override;
+    Value execute(Interpreter&) override;
     void dump(int indent) override;
     inline std::string get_type() override { return "ExpressionStatement"; };
 private:

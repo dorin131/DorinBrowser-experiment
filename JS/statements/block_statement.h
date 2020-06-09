@@ -19,7 +19,7 @@ public:
     inline std::list<Statement*> get_elements() { return source_elements; };
 
     // Overrides
-    Value execute(Interpreter*) override;
+    Value execute(Interpreter&) override;
     void dump(int indent) override;
     inline std::string get_type() override { return "BlockStatement"; };
 private:

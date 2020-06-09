@@ -12,7 +12,7 @@ void ReturnStatement::dump(int indent)
     std::cout << indent << "ReturnStatement";
 };
 
-Value ReturnStatement::execute(Interpreter*)
+Value ReturnStatement::execute(Interpreter&)
 {
     return Value(Value::UNDEFINED, "");
 };

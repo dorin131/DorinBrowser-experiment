@@ -13,9 +13,9 @@ void BlockStatement::append(Statement* source_element)
     source_elements.push_front(source_element);
 }
 
-Value BlockStatement::execute(Interpreter* i)
+Value BlockStatement::execute(Interpreter& i)
 {
-    return i->run(this);
+    return i.run(this);
 };
 
 void BlockStatement::dump(int indent)

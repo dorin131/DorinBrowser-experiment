@@ -19,15 +19,15 @@ public:
 
     // Overrides
     inline std::string get_type() override { return "BinaryExpression"; };
-    Value execute(Interpreter*) override;
+    Value execute(Interpreter&) override;
     void dump(int indent) override;
 private:
     std::string op;
     Node* left;
     Node* right;
 
-    Value string_arithmetic(Value, Value);
-    Value number_arithmetic(Value, Value);
+    Value string_arithmetic(Value, Value) const;
+    Value number_arithmetic(Value, Value) const;
 };
 
 } // namespace js

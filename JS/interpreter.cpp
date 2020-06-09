@@ -14,7 +14,7 @@ Value Interpreter::run(BlockStatement* block_statement)
 
     enter_scope(block_statement);
     for (Statement* statement : block_statement->get_elements()) {
-        last_value = statement->execute(this);
+        last_value = statement->execute(*this);
 
         if (!is_top_level_block_statement(block_statement) && is_return_statement(statement)) {
             has_returned = true;

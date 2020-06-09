@@ -70,8 +70,8 @@ public:
     Token(Type type, std::string value);
     Token(Type type, char value);
 
-    Type get_type();
-    std::string get_value();
+    inline Type get_type() { return type; };
+    inline std::string get_value() { return value; };
 
     bool operator==(Token lhs) const;
 private:

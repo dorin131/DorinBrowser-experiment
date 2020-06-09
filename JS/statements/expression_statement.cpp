@@ -14,7 +14,7 @@ void ExpressionStatement::dump(int indent)
     expression->dump(indent + 1);
 };
 
-Value ExpressionStatement::execute(Interpreter* i)
+Value ExpressionStatement::execute(Interpreter& i)
 {
     return get_expression()->execute(i);
 };

@@ -12,7 +12,7 @@ void FunctionDeclaration::dump(int indent)
     std::cout << indent << "FunctionDeclaration";
 };
 
-Value FunctionDeclaration::execute(Interpreter*)
+Value FunctionDeclaration::execute(Interpreter&)
 {
     return Value(Value::UNDEFINED, "");
 };

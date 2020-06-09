@@ -8,7 +8,7 @@ BinaryExpression::BinaryExpression(std::string op, Node* left, Node* right)
 
 }
 
-Value BinaryExpression::execute(Interpreter* i)
+Value BinaryExpression::execute(Interpreter& i)
 {
     Value l = left->execute(i);
     Value r = right->execute(i);
@@ -19,7 +19,7 @@ Value BinaryExpression::execute(Interpreter* i)
     return number_arithmetic(l, r);
 }
 
-Value BinaryExpression::string_arithmetic(Value l, Value r)
+Value BinaryExpression::string_arithmetic(Value l, Value r) const
 {
     if (op != "+") {
         throw SyntaxError("Cannot use operator on strings: " + op);
@@ -27,7 +27,7 @@ Value BinaryExpression::string_arithmetic(Value l, Value r)
     return Value(Value::STRING, l.get_value() + r.get_value());
 }
 
-Value BinaryExpression::number_arithmetic(Value l, Value r)
+Value BinaryExpression::number_arithmetic(Value l, Value r) const
 {
     int l_int = std::stoi(l.get_value());
     int r_int = std::stoi(r.get_value());

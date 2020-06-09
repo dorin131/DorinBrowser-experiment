@@ -14,16 +14,6 @@ Token::Token(Type type, char value)
     this->value = value;
 }
 
-Token::Type Token::get_type()
-{
-    return type;
-}
-
-std::string Token::get_value()
-{
-    return value;
-}
-
 bool Token::operator==(Token t) const
 {
     return t.type == this->type && t.value == this->value;
