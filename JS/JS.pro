@@ -1,5 +1,6 @@
 HEADERS += interpreter.h \
     error.h \
+    expressions/object_literal_expression.h \
     token.h \
     node.h \
     parser.h \
@@ -20,6 +21,7 @@ HEADERS += interpreter.h \
 
 SOURCES += interpreter.cpp \
     error.cpp \
+    expressions/object_literal_expression.cpp \
     token.cpp \
     main.cpp \
     node.cpp \

@@ -17,6 +17,7 @@ public:
         STRING,
 
         /* Keywords */
+        UNDEFINED,
         FUNCTION,
         VAR,
         RETURN,
@@ -71,7 +72,7 @@ public:
     Token(Type type, char value);
 
     inline Type get_type() { return type; };
-    inline std::string get_value() { return value; };
+    inline std::string get_value() const { return value; };
 
     bool operator==(Token lhs) const;
 private:

@@ -9,7 +9,8 @@ Expression::Expression()
 
 void Expression::dump(int indent)
 {
-    std::cout << indent << "Expression";
+    print_indent(indent);
+    std::cout << "Expression" << std::endl;
 };
 
 } // namespace js
