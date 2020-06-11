@@ -136,20 +136,17 @@ VariableStatement* Parser::parse_variable_statement()
 {
     next_token();
     if (!current_token_is(Token::IDENTIFIER)) {
-
+        throw SyntaxError("Expecting identifier after \"var\" statement");
     }
     Token identifier = current_token;
     next_token();
 
     if (!current_token_is(Token::ASSIGN)) {
-
+        throw SyntaxError("Expected variable value assignment");
     }
     next_token();
     Expression* expression = parse_expression(Precedence::LOWEST);
 
-    while (!current_token_is(Token::SEMICOLON)) {
-        next_token();
-    }
     return new VariableStatement(Identifier(identifier), expression);
 }
 

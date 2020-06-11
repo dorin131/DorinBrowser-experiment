@@ -15,7 +15,10 @@ bool Identifier::operator<(const Identifier& rhs) const
 
 void Identifier::dump(int indent)
 {
-    std::cout << indent << "Identifier";
+    print_indent(indent);
+    std::cout << "Identifier" << std::endl;
+    print_indent(indent + 1);
+    std::cout << token.get_value() << std::endl;
 };
 
 Value Identifier::execute(Interpreter& i)

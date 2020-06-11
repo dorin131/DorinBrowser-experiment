@@ -11,7 +11,9 @@ VariableStatement::VariableStatement(Identifier ident, Expression* expr)
 
 void VariableStatement::dump(int indent)
 {
-    std::cout << indent << "VariableStatement";
+    print_indent(indent);
+    std::cout << "VariableStatement" << std::endl;
+    identifier.dump(indent + 1);
 }
 
 Value VariableStatement::execute(Interpreter& i)
