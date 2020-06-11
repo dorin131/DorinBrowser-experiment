@@ -146,4 +146,42 @@ TEST(Interpreter, InterpretExpression8)
     EXPECT_EQ(result.get_value(), "1");
 }
 
+TEST(Interpreter, InterpretExpression9)
+{
+    js::Tokenizer t = js::Tokenizer("var x = 10 * (3+3); x + 1;");
+    auto p = js::Parser(t);
+    js::Program* program;
+    try {
+        program = p.parse_program();
+    } catch (js::SyntaxError e) {
+        std::cerr << "Parsing error: " + e.message << std::endl;
+    }
+    js::Interpreter interpreter;
+    auto result = interpreter.run(program);
+
+    program->dump(0);
+
+    EXPECT_EQ(result.get_type(), js::Value::NUMBER);
+    EXPECT_EQ(result.get_value(), "61");
+}
+
+TEST(Interpreter, InterpretExpression10)
+{
+    js::Tokenizer t = js::Tokenizer("var x = 10 * (3+3); var y = x + 1; y-1;");
+    auto p = js::Parser(t);
+    js::Program* program;
+    try {
+        program = p.parse_program();
+    } catch (js::SyntaxError e) {
+        std::cerr << "Parsing error: " + e.message << std::endl;
+    }
+    js::Interpreter interpreter;
+    auto result = interpreter.run(program);
+
+    program->dump(0);
+
+    EXPECT_EQ(result.get_type(), js::Value::NUMBER);
+    EXPECT_EQ(result.get_value(), "60");
+}
+
 #endif // TST_INTERPRETER_H
