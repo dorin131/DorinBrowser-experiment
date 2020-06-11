@@ -4,6 +4,7 @@
 #include <list>
 
 #include "value.h"
+#include "./expressions/object_literal_expression.h"
 #include "./statements/block_statement.h"
 
 namespace js {
@@ -14,7 +15,10 @@ public:
     Interpreter();
 
     Value run(BlockStatement*);
+
+    inline ObjectLiteralExpression get_global() { return global_scope; };
 private:
+    ObjectLiteralExpression global_scope;
     std::list<BlockStatement*> scope_stack;
 
     void enter_scope(BlockStatement*);

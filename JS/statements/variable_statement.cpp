@@ -1,4 +1,5 @@
 #include "variable_statement.h"
+#include "../interpreter.h"
 
 namespace js {
 
@@ -13,8 +14,9 @@ void VariableStatement::dump(int indent)
     std::cout << indent << "VariableStatement";
 }
 
-Value VariableStatement::execute(Interpreter&)
+Value VariableStatement::execute(Interpreter& i)
 {
+    i.get_global().set(identifier, expression);
     return Value(Value::UNDEFINED, "");
 };
 

@@ -1,4 +1,5 @@
 #include "identifier.h"
+#include "../interpreter.h"
 
 namespace js {
 
@@ -17,9 +18,9 @@ void Identifier::dump(int indent)
     std::cout << indent << "Identifier";
 };
 
-Value Identifier::execute(Interpreter&)
+Value Identifier::execute(Interpreter& i)
 {
-    return Value(Value::UNDEFINED, "");
+    return i.get_global().get(*this)->execute(i);
 };
 
 } // namespace js
