@@ -18,7 +18,7 @@ void VariableStatement::dump(int indent)
 
 Value VariableStatement::execute(Interpreter& i)
 {
-    i.get_global().set(identifier, expression);
+    i.get_global()->set(identifier, expression);
     return Value(Value::UNDEFINED, "");
 };
 

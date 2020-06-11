@@ -17,7 +17,7 @@ Value Literal::execute(Interpreter&)
         return Value(Value::NUMBER, token.get_value());
     default:
         // TODO: Handle this better
-        return Value(Value::STRING, "Unknown");
+        return Value(Value::UNDEFINED, "");
     }
 }
 

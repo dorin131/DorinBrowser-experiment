@@ -16,7 +16,7 @@ public:
 
     Value run(BlockStatement*);
 
-    inline ObjectLiteralExpression get_global() { return global_scope; };
+    inline ObjectLiteralExpression* get_global() { return &global_scope; };
 private:
     ObjectLiteralExpression global_scope;
     std::list<BlockStatement*> scope_stack;

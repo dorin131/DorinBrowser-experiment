@@ -71,6 +71,7 @@ private:
     Literal* parse_literal_expression();
     Expression* parse_grouped_expression();
     BinaryExpression* parse_binary_expression(Expression*);
+    Identifier* parse_identifier();
 
     // Helpers
     void next_token();

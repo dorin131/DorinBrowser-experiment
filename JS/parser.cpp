@@ -85,6 +85,9 @@ Expression* Parser::parse_expression(Precedence precedence)
     case(Token::LPAREN):
         left = parse_grouped_expression();
         break;
+    case(Token::IDENTIFIER):
+        left = parse_identifier();
+        break;
     default:
         throw SyntaxError("Unexpected token when parsing expression: " + current_token.get_value());
     }
@@ -148,6 +151,11 @@ VariableStatement* Parser::parse_variable_statement()
     Expression* expression = parse_expression(Precedence::LOWEST);
 
     return new VariableStatement(Identifier(identifier), expression);
+}
+
+Identifier* Parser::parse_identifier()
+{
+    return new Identifier(current_token);
 }
 
 IfStatement* Parser::parse_if_statement()

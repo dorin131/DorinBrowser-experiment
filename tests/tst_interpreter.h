@@ -127,4 +127,23 @@ TEST(Interpreter, InterpretExpression7)
     EXPECT_EQ(result.get_type(), js::Value::UNDEFINED);
 }
 
+TEST(Interpreter, InterpretExpression8)
+{
+    js::Tokenizer t = js::Tokenizer("var x = 1; x");
+    auto p = js::Parser(t);
+    js::Program* program;
+    try {
+        program = p.parse_program();
+    } catch (js::SyntaxError e) {
+        std::cerr << "Parsing error: " + e.message << std::endl;
+    }
+    js::Interpreter interpreter;
+    auto result = interpreter.run(program);
+
+    program->dump(0);
+
+    EXPECT_EQ(result.get_type(), js::Value::NUMBER);
+    EXPECT_EQ(result.get_value(), "1");
+}
+
 #endif // TST_INTERPRETER_H

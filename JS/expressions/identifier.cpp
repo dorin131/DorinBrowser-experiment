@@ -23,7 +23,7 @@ void Identifier::dump(int indent)
 
 Value Identifier::execute(Interpreter& i)
 {
-    return i.get_global().get(*this)->execute(i);
+    return i.get_global()->get(*this)->execute(i);
 };
 
 } // namespace js
