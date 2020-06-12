@@ -17,10 +17,10 @@ public:
     Value run(BlockStatement*);
 
     inline Object* get_global() { return &global_scope; };
-    inline std::vector<Object> get_local_scopes() { return local_scopes; };
+    inline std::list<Object*> get_local_scopes() { return local_scopes; };
 private:
     Object global_scope;
-    std::vector<Object> local_scopes;
+    std::list<Object*> local_scopes;
     std::list<BlockStatement*> scope_stack;
 
     void enter_scope(BlockStatement*);

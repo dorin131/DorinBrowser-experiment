@@ -17,6 +17,12 @@ Node* Object::get(Identifier i)
     return new Literal(Token(Token::UNDEFINED, ""));
 };
 
+bool Object::has(Identifier i)
+{
+    auto search = object_map.find(i);
+    return search != object_map.end();
+}
+
 void Object::set(Identifier ident, Node* expr)
 {
     object_map.insert({ident, expr});

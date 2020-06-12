@@ -18,6 +18,9 @@ public:
     void dump(int indent) override;
     Value execute(Interpreter&) override;
 
+    // Helpers
+    Node* find_in_scope(Interpreter&, Identifier*);
+
     // Comparator because we want to use this class as map key
     bool operator<(const Identifier&) const;
 private:

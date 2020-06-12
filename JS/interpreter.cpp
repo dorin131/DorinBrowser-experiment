@@ -34,11 +34,13 @@ Value Interpreter::run(BlockStatement* block_statement)
 void Interpreter::enter_scope(BlockStatement* block_statement)
 {
     scope_stack.push_front(block_statement);
+    local_scopes.push_front(block_statement->get_local_scope());
 }
 
 void Interpreter::exit_scope()
 {
     scope_stack.pop_back();
+    local_scopes.pop_back();
 }
 
 bool Interpreter::is_top_level_block_statement(BlockStatement* block_statement)

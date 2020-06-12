@@ -13,6 +13,7 @@ public:
     Object();
 
     Node* get(Identifier);
+    bool has(Identifier);
     void set(Identifier, Node*);
 
     // Overrides
