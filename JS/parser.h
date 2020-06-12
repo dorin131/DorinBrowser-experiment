@@ -76,6 +76,8 @@ private:
     BlockStatement* parse_block_statement();
     CallExpression* parse_call_expression(Node*);
 
+    std::list<Identifier> parse_function_parameters();
+
     // Helpers
     void next_token();
     bool current_token_is(Token::Type);

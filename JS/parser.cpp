@@ -156,19 +156,33 @@ VariableStatement* Parser::parse_variable_statement()
 
 FunctionDeclaration* Parser::parse_function_declaration()
 {
-    if (!peek_token_is(Token::LPAREN)) {
+    next_token();
+    if (!current_token_is(Token::LPAREN)) {
         throw SyntaxError("Expected left paren after function declaration");
     }
-    next_token(); // LPAREN
-    // parsing parameters
-    next_token(); // RPAREN
+
+    auto params = parse_function_parameters();
+
     if (!peek_token_is(Token::LBRACE)) {
         throw SyntaxError("Expected left brace");
     }
     next_token(); // LBRACE
     auto body = parse_block_statement();
 
-    return new FunctionDeclaration(body);
+    return new FunctionDeclaration(body, params);
+}
+
+std::list<Identifier> Parser::parse_function_parameters()
+{
+    std::list<Identifier> parameters;
+    next_token();
+    while (!current_token_is(Token::RPAREN)) {
+        if (current_token_is(Token::IDENTIFIER)) {
+            parameters.push_front(current_token);
+            next_token();
+        }
+    }
+    return parameters;
 }
 
 BlockStatement* Parser::parse_block_statement()

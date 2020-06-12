@@ -2,8 +2,8 @@
 
 namespace js {
 
-FunctionDeclaration::FunctionDeclaration(BlockStatement* b)
-    : body(b)
+FunctionDeclaration::FunctionDeclaration(BlockStatement* body, std::list<Identifier> parameters)
+    : body(body), parameters(parameters)
 {
 
 }

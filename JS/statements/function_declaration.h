@@ -2,6 +2,7 @@
 #define FUNCTIONDECLARATION_H
 
 #include "statement.h"
+#include "../expressions/identifier.h"
 #include "block_statement.h"
 
 namespace js {
@@ -9,7 +10,7 @@ namespace js {
 class FunctionDeclaration : public Statement
 {
 public:
-    FunctionDeclaration(BlockStatement* body);
+    FunctionDeclaration(BlockStatement*, std::list<Identifier>);
 
     inline BlockStatement* get_body() { return body; };
 
@@ -19,6 +20,7 @@ public:
     inline std::string get_type() override { return "FunctionDeclaration"; };
 private:
     BlockStatement* body;
+    std::list<Identifier> parameters;
 };
 
 } // namespace js
