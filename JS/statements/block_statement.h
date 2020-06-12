@@ -5,7 +5,7 @@
 #include <vector>
 
 #include "statement.h"
-#include "../expressions/object_literal_expression.h"
+#include "../expressions/object.h"
 
 namespace js {
 
@@ -32,7 +32,7 @@ private:
      * @brief A list of Statements
      */
     std::list<Statement*> source_elements;
-    ObjectLiteralExpression local_scope;
+    Object local_scope;
     std::list<Identifier> parameters;
 };
 

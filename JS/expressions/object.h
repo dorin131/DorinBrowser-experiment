@@ -7,10 +7,10 @@
 
 namespace js {
 
-class ObjectLiteralExpression : public Expression
+class Object : public Expression
 {
 public:
-    ObjectLiteralExpression();
+    Object();
 
     Node* get(Identifier);
     void set(Identifier, Node*);

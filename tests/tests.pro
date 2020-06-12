@@ -30,7 +30,7 @@ HEADERS += \
     ../JS/expressions/literal.h \
     ../JS/expressions/binary_expression.h \
     ../JS/expressions/binary_expression.h \
-    ../JS/expressions/object_literal_expression.h \
+    ../JS/expressions/object.h \
 
 SOURCES += \
         main.cpp \
@@ -54,4 +54,4 @@ SOURCES += \
         ../JS/expressions/literal.cpp \
         ../JS/expressions/binary_expression.cpp \
         ../JS/expressions/call_expression.cpp \
-        ../JS/expressions/object_literal_expression.cpp \
+        ../JS/expressions/object.cpp \

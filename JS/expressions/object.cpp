@@ -1,13 +1,13 @@
-#include "object_literal_expression.h"
+#include "object.h"
 
 namespace js {
 
-ObjectLiteralExpression::ObjectLiteralExpression()
+Object::Object()
 {
 
 }
 
-Node* ObjectLiteralExpression::get(Identifier i)
+Node* Object::get(Identifier i)
 {
     auto search = object_map.find(i);
 
@@ -17,17 +17,17 @@ Node* ObjectLiteralExpression::get(Identifier i)
     return new Literal(Token(Token::UNDEFINED, ""));
 };
 
-void ObjectLiteralExpression::set(Identifier ident, Node* expr)
+void Object::set(Identifier ident, Node* expr)
 {
     object_map.insert({ident, expr});
 };
 
-Value ObjectLiteralExpression::execute(Interpreter &)
+Value Object::execute(Interpreter &)
 {
     return Value(Value::UNDEFINED, "");
 }
 
-void ObjectLiteralExpression::dump(int indent)
+void Object::dump(int indent)
 {
     print_indent(indent);
     std::cout << "ObjectLiteralExpression\n";
