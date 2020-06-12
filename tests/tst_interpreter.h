@@ -35,6 +35,7 @@ std::vector<test> tests = {
     test("function() { return 3; };", js::Value::UNDEFINED, ""),
     test("var f = function() { return 4; }; f()", js::Value::NUMBER, "4"),
     test("var f = function() { return 4 / 2; }; f() *3;", js::Value::NUMBER, "6"),
+    test("var f = function() { var ff = function(){return 8;}; return ff(); }; f()", js::Value::NUMBER, "8"),
 };
 
 TEST(Interpreter, AllTests)
