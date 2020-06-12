@@ -97,8 +97,8 @@ Node* Parser::parse_expression(Precedence precedence)
         next_token();
         switch(current_token.get_type()) {
         case(Token::LPAREN):
-            //left = parse_call_expression(left);
-            //break;
+            left = parse_call_expression(left);
+            break;
         default:
             left = parse_binary_expression(left);
         }
@@ -189,22 +189,33 @@ Identifier* Parser::parse_identifier()
     return new Identifier(current_token);
 }
 
-IfStatement* Parser::parse_if_statement()
-{
-    return new IfStatement();
-}
-
 ReturnStatement* Parser::parse_return_statement()
 {
     next_token();
 
     auto return_statement =  new ReturnStatement(parse_expression(Precedence::LOWEST));
 
-    while (!peek_token_is(Token::SEMICOLON)) {
+    if (peek_token_is(Token::SEMICOLON)) {
         next_token();
     }
 
     return return_statement;
+}
+
+CallExpression* Parser::parse_call_expression(Node * node)
+{
+    auto call_expression = new CallExpression(node);
+
+    while (!current_token_is(Token::RPAREN)) {
+        next_token();
+    }
+
+    return call_expression;
+}
+
+IfStatement* Parser::parse_if_statement()
+{
+    return new IfStatement();
 }
 
 } // namespace js

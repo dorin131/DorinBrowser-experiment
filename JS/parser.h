@@ -9,6 +9,7 @@
 #include "expressions/expression.h"
 #include "expressions/identifier.h"
 #include "expressions/binary_expression.h"
+#include "expressions/call_expression.h"
 #include "expressions/literal.h"
 #include "statements/program.h"
 #include "statements/variable_statement.h"
@@ -73,6 +74,7 @@ private:
     BinaryExpression* parse_binary_expression(Node*);
     Identifier* parse_identifier();
     BlockStatement* parse_block_statement();
+    CallExpression* parse_call_expression(Node*);
 
     // Helpers
     void next_token();

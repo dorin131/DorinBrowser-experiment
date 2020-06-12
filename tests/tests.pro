@@ -29,6 +29,7 @@ HEADERS += \
     ../JS/expressions/identifier.h \
     ../JS/expressions/literal.h \
     ../JS/expressions/binary_expression.h \
+    ../JS/expressions/binary_expression.h \
     ../JS/expressions/object_literal_expression.h \
 
 SOURCES += \
@@ -52,4 +53,5 @@ SOURCES += \
         ../JS/expressions/identifier.cpp \
         ../JS/expressions/literal.cpp \
         ../JS/expressions/binary_expression.cpp \
+        ../JS/expressions/call_expression.cpp \
         ../JS/expressions/object_literal_expression.cpp \

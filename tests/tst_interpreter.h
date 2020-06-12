@@ -33,7 +33,7 @@ std::vector<test> tests = {
     test("function() {}", js::Value::UNDEFINED, ""),
     test("function() { 1 + 2; };", js::Value::UNDEFINED, ""),
     test("function() { return 3; };", js::Value::UNDEFINED, ""),
-    //test("var f = function() { return 4; }; f()", js::Value::NUMBER, "4"),
+    test("var f = function() { return 4; }; f()", js::Value::NUMBER, "4"),
 };
 
 TEST(Interpreter, AllTests)
@@ -46,6 +46,8 @@ TEST(Interpreter, AllTests)
             program = p.parse_program();
         } catch (js::SyntaxError e) {
             std::cerr << "Parsing error: " + e.message << std::endl;
+            GTEST_NONFATAL_FAILURE_("");
+            return;
         }
         js::Interpreter interpreter;
         auto result = interpreter.run(program);
