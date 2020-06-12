@@ -196,7 +196,15 @@ IfStatement* Parser::parse_if_statement()
 
 ReturnStatement* Parser::parse_return_statement()
 {
-    return new ReturnStatement();
+    next_token();
+
+    auto return_statement =  new ReturnStatement(parse_expression(Precedence::LOWEST));
+
+    while (!peek_token_is(Token::SEMICOLON)) {
+        next_token();
+    }
+
+    return return_statement;
 }
 
 } // namespace js

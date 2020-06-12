@@ -2,19 +2,21 @@
 
 namespace js {
 
-ReturnStatement::ReturnStatement()
+ReturnStatement::ReturnStatement(Node* exp)
+    : expression(exp)
 {
 
 }
 
 void ReturnStatement::dump(int indent)
 {
-    std::cout << indent << "ReturnStatement";
+    print_indent(indent);
+    std::cout << "ReturnStatement" << std::endl;
 };
 
-Value ReturnStatement::execute(Interpreter&)
+Value ReturnStatement::execute(Interpreter& i)
 {
-    return Value(Value::UNDEFINED, "");
+    return expression->execute(i);
 };
 
 } // namespace js
