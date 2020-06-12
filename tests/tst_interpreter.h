@@ -30,6 +30,10 @@ std::vector<test> tests = {
     test("var x = 1; x", js::Value::NUMBER, "1"),
     test("var x = 10 * (3+3); x + 1;", js::Value::NUMBER, "61"),
     test("var x = 10 * (3+3); var y = x + 1; y-1;", js::Value::NUMBER, "60"),
+    //test("function() {}", js::Value::UNDEFINED, ""),
+    //test("function() { 1 + 2; };", js::Value::UNDEFINED, ""),
+    //test("function() { return 3; };", js::Value::UNDEFINED, ""),
+    //test("var f = function() { return 4; }; f()", js::Value::NUMBER, "4"),
 };
 
 TEST(Interpreter, AllTests)
@@ -46,8 +50,8 @@ TEST(Interpreter, AllTests)
         js::Interpreter interpreter;
         auto result = interpreter.run(program);
 
+        std::cout << std::endl << test.code << std::endl;
         program->dump(0);
-        std::cout << std::endl;
 
         EXPECT_EQ(result.get_type(), test.result_type);
         EXPECT_EQ(result.get_value(), test.result_value);

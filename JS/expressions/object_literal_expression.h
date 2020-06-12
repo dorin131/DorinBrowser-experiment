@@ -12,15 +12,15 @@ class ObjectLiteralExpression : public Expression
 public:
     ObjectLiteralExpression();
 
-    Expression* get(Identifier);
-    void set(Identifier, Expression*);
+    Node* get(Identifier);
+    void set(Identifier, Node*);
 
     // Overrides
     Value execute(Interpreter&) override;
     void dump(int indent) override;
     inline std::string get_type() override { return "ObjectLiteralExpression"; };
 private:
-    std::map<Identifier, Expression*> object_map;
+    std::map<Identifier, Node*> object_map;
 };
 
 } // namespace js

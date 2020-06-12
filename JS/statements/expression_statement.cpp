@@ -2,7 +2,7 @@
 
 namespace js {
 
-ExpressionStatement::ExpressionStatement(Expression* exp): expression(exp)
+ExpressionStatement::ExpressionStatement(Node* exp): expression(exp)
 {
 
 }

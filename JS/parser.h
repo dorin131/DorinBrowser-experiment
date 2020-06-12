@@ -67,10 +67,10 @@ private:
     ReturnStatement* parse_return_statement();
     FunctionDeclaration* parse_function_declaration();
     ExpressionStatement* parse_expression_statement();
-    Expression* parse_expression(Precedence);
+    Node* parse_expression(Precedence);
     Literal* parse_literal_expression();
-    Expression* parse_grouped_expression();
-    BinaryExpression* parse_binary_expression(Expression*);
+    Node* parse_grouped_expression();
+    BinaryExpression* parse_binary_expression(Node*);
     Identifier* parse_identifier();
 
     // Helpers

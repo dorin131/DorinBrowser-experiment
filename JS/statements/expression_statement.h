@@ -9,16 +9,16 @@ namespace js {
 class ExpressionStatement : public Statement
 {
 public:
-    ExpressionStatement(Expression*);
+    ExpressionStatement(Node*);
 
-    inline Expression* get_expression() { return expression; };
+    inline Node* get_expression() { return expression; };
 
     // Overrides
     Value execute(Interpreter&) override;
     void dump(int indent) override;
     inline std::string get_type() override { return "ExpressionStatement"; };
 private:
-    Expression* expression;
+    Node* expression;
 };
 
 } //namespace js

@@ -7,7 +7,7 @@ ObjectLiteralExpression::ObjectLiteralExpression()
 
 }
 
-Expression* ObjectLiteralExpression::get(Identifier i)
+Node* ObjectLiteralExpression::get(Identifier i)
 {
     auto search = object_map.find(i);
 
@@ -17,7 +17,7 @@ Expression* ObjectLiteralExpression::get(Identifier i)
     return new Literal(Token(Token::UNDEFINED, ""));
 };
 
-void ObjectLiteralExpression::set(Identifier ident, Expression* expr)
+void ObjectLiteralExpression::set(Identifier ident, Node* expr)
 {
     object_map.insert({ident, expr});
 };

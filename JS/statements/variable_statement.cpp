@@ -3,7 +3,7 @@
 
 namespace js {
 
-VariableStatement::VariableStatement(Identifier ident, Expression* expr)
+VariableStatement::VariableStatement(Identifier ident, Node* expr)
     : identifier(ident), expression(expr)
 {
 

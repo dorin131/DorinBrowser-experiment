@@ -61,8 +61,6 @@ Statement* Parser::parse_statement()
         return parse_if_statement();
     case(Token::RETURN):
         return parse_return_statement();
-    case(Token::FUNCTION):
-        return parse_function_declaration();
     default:
         return parse_expression_statement();
     }
@@ -73,9 +71,9 @@ ExpressionStatement* Parser::parse_expression_statement()
     return new ExpressionStatement(parse_expression(Precedence::LOWEST));
 }
 
-Expression* Parser::parse_expression(Precedence precedence)
+Node* Parser::parse_expression(Precedence precedence)
 {
-    Expression* left;
+    Node* left;
 
     switch(current_token.get_type()) {
     case(Token::NUMBER):
@@ -87,6 +85,9 @@ Expression* Parser::parse_expression(Precedence precedence)
         break;
     case(Token::IDENTIFIER):
         left = parse_identifier();
+        break;
+    case(Token::FUNCTION):
+        left = parse_function_declaration();
         break;
     default:
         throw SyntaxError("Unexpected token when parsing expression: " + current_token.get_value());
@@ -115,7 +116,7 @@ Literal* Parser::parse_literal_expression()
     return new Literal(current_token);
 }
 
-BinaryExpression* Parser::parse_binary_expression(Expression* left)
+BinaryExpression* Parser::parse_binary_expression(Node* left)
 {
     Token token = current_token;
     Precedence precedence = current_precedence();
@@ -123,7 +124,7 @@ BinaryExpression* Parser::parse_binary_expression(Expression* left)
     return new BinaryExpression(token.get_value(), left, parse_expression(precedence));
 }
 
-Expression* Parser::parse_grouped_expression()
+Node* Parser::parse_grouped_expression()
 {
     next_token();
     auto expression = parse_expression(Precedence::LOWEST);
@@ -148,7 +149,7 @@ VariableStatement* Parser::parse_variable_statement()
         throw SyntaxError("Expected variable value assignment");
     }
     next_token();
-    Expression* expression = parse_expression(Precedence::LOWEST);
+    Node* expression = parse_expression(Precedence::LOWEST);
 
     return new VariableStatement(Identifier(identifier), expression);
 }

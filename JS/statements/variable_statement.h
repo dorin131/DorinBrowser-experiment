@@ -10,7 +10,7 @@ namespace js {
 class VariableStatement : public Statement
 {
 public:
-    VariableStatement(Identifier ident, Expression* expr);
+    VariableStatement(Identifier ident, Node* expr);
 
     // Overrides
     Value execute(Interpreter&) override;
@@ -18,7 +18,7 @@ public:
     inline std::string get_type() override { return "VariableStatement"; };
 private:
     Identifier identifier;
-    Expression* expression;
+    Node* expression;
 };
 } // namespace js
 
