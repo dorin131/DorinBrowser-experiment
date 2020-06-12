@@ -72,6 +72,7 @@ private:
     Node* parse_grouped_expression();
     BinaryExpression* parse_binary_expression(Node*);
     Identifier* parse_identifier();
+    BlockStatement* parse_block_statement();
 
     // Helpers
     void next_token();

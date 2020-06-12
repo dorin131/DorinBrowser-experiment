@@ -22,6 +22,11 @@ void BlockStatement::dump(int indent)
 {
     print_indent(indent);
     std::cout << "BlockStatement" << std::endl;
+    if (source_elements.size() > 0) {
+        for (Statement* st : source_elements) {;
+            st->dump(indent + 1);
+        }
+    }
 };
 
 } // namespace js

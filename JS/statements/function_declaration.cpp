@@ -2,14 +2,17 @@
 
 namespace js {
 
-FunctionDeclaration::FunctionDeclaration()
+FunctionDeclaration::FunctionDeclaration(BlockStatement* b)
+    : body(b)
 {
 
 }
 
 void FunctionDeclaration::dump(int indent)
 {
-    std::cout << indent << "FunctionDeclaration";
+    print_indent(indent);
+    std::cout << "FunctionDeclaration" << std::endl;
+    body->dump(indent + 1);
 };
 
 Value FunctionDeclaration::execute(Interpreter&)

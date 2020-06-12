@@ -154,6 +154,36 @@ VariableStatement* Parser::parse_variable_statement()
     return new VariableStatement(Identifier(identifier), expression);
 }
 
+FunctionDeclaration* Parser::parse_function_declaration()
+{
+    if (!peek_token_is(Token::LPAREN)) {
+        throw SyntaxError("Expected left paren after function declaration");
+    }
+    next_token(); // LPAREN
+    // parsing parameters
+    next_token(); // RPAREN
+    if (!peek_token_is(Token::LBRACE)) {
+        throw SyntaxError("Expected left brace");
+    }
+    next_token(); // LBRACE
+    auto body = parse_block_statement();
+
+    return new FunctionDeclaration(body);
+}
+
+BlockStatement* Parser::parse_block_statement()
+{
+    next_token();
+    auto block_statement = new BlockStatement();
+
+    while (!current_token_is(Token::RBRACE)) {
+        block_statement->append(parse_statement());
+        next_token();
+    }
+
+    return block_statement;
+}
+
 Identifier* Parser::parse_identifier()
 {
     return new Identifier(current_token);
@@ -167,11 +197,6 @@ IfStatement* Parser::parse_if_statement()
 ReturnStatement* Parser::parse_return_statement()
 {
     return new ReturnStatement();
-}
-
-FunctionDeclaration* Parser::parse_function_declaration()
-{
-    return new FunctionDeclaration();
 }
 
 } // namespace js
