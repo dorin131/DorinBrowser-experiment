@@ -2,8 +2,10 @@
 #define BLOCKSTATEMENT_H
 
 #include <list>
+#include <vector>
 
 #include "statement.h"
+#include "../expressions/object_literal_expression.h"
 
 namespace js {
 
@@ -18,6 +20,9 @@ public:
     void append(Statement*);
     inline std::list<Statement*> get_elements() { return source_elements; };
 
+    void associate_arguments(std::vector<Node*>);
+    void add_parameters(std::list<Identifier>);
+
     // Overrides
     Value execute(Interpreter&) override;
     void dump(int indent) override;
@@ -27,6 +32,8 @@ private:
      * @brief A list of Statements
      */
     std::list<Statement*> source_elements;
+    ObjectLiteralExpression local_scope;
+    std::list<Identifier> parameters;
 };
 
 } // namespace js

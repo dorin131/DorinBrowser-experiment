@@ -3,8 +3,8 @@
 
 namespace js {
 
-CallExpression::CallExpression(Node* exp)
-    : expression(exp)
+CallExpression::CallExpression(Node* exp, std::vector<Node*> args)
+    : expression(exp), arguments(args)
 {
 
 }
@@ -18,7 +18,9 @@ Value CallExpression::execute(Interpreter& i)
     }
 
     if (callee->get_type() == "FunctionDeclaration") {
-        return static_cast<FunctionDeclaration*>(callee)->get_body()->execute(i);
+        auto function = static_cast<FunctionDeclaration*>(callee);
+        function->get_body()->associate_arguments(arguments);
+        return function->get_body()->execute(i);
     }
 
     return callee->execute(i);

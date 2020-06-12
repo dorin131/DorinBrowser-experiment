@@ -75,8 +75,8 @@ private:
     Identifier* parse_identifier();
     BlockStatement* parse_block_statement();
     CallExpression* parse_call_expression(Node*);
-
     std::list<Identifier> parse_function_parameters();
+    std::vector<Node*> parse_call_arguments();
 
     // Helpers
     void next_token();

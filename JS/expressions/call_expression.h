@@ -10,7 +10,7 @@ namespace js {
 class CallExpression : public Expression
 {
 public:
-    CallExpression(Node*);
+    CallExpression(Node*, std::vector<Node*>);
 
     // Overrides
     inline std::string get_type() override { return "CallExpression"; };
@@ -18,6 +18,7 @@ public:
     void dump(int indent) override;
 private:
     Node* expression;
+    std::vector<Node*> arguments;
 };
 
 } // namespace js

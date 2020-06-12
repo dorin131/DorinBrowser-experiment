@@ -21,6 +21,7 @@ public:
     inline std::string get_type() override { return "ObjectLiteralExpression"; };
 private:
     std::map<Identifier, Node*> object_map;
+    inline std::map<Identifier, Node*> get_map() { return object_map; };
 };
 
 } // namespace js

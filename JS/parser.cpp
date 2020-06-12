@@ -218,13 +218,18 @@ ReturnStatement* Parser::parse_return_statement()
 
 CallExpression* Parser::parse_call_expression(Node * node)
 {
-    auto call_expression = new CallExpression(node);
+    auto call_expression = new CallExpression(node, parse_call_arguments());
 
     while (!current_token_is(Token::RPAREN)) {
         next_token();
     }
 
     return call_expression;
+}
+
+std::vector<Node*> Parser::parse_call_arguments()
+{
+    return std::vector<Node*>();
 }
 
 IfStatement* Parser::parse_if_statement()

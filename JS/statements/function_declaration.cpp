@@ -5,7 +5,7 @@ namespace js {
 FunctionDeclaration::FunctionDeclaration(BlockStatement* body, std::list<Identifier> parameters)
     : body(body), parameters(parameters)
 {
-
+    body->add_parameters(parameters);
 }
 
 void FunctionDeclaration::dump(int indent)
