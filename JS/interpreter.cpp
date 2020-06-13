@@ -39,8 +39,8 @@ void Interpreter::enter_scope(BlockStatement* block_statement)
 
 void Interpreter::exit_scope()
 {
-    scope_stack.pop_back();
-    local_scopes.pop_back();
+    scope_stack.pop_front();
+    local_scopes.pop_front();
 }
 
 bool Interpreter::is_top_level_block_statement(BlockStatement* block_statement)

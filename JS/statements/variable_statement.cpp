@@ -14,11 +14,12 @@ void VariableStatement::dump(int indent)
     print_indent(indent);
     std::cout << "VariableStatement" << std::endl;
     identifier.dump(indent + 1);
+    expression->dump(indent + 1);
 }
 
 Value VariableStatement::execute(Interpreter& i)
 {
-    i.get_global()->set(identifier, expression);
+    i.get_local_scopes().front()->set(identifier, expression);
     return Value(Value::UNDEFINED, "");
 };
 

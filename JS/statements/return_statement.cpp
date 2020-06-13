@@ -12,6 +12,7 @@ void ReturnStatement::dump(int indent)
 {
     print_indent(indent);
     std::cout << "ReturnStatement" << std::endl;
+    expression->dump(indent + 1);
 };
 
 Value ReturnStatement::execute(Interpreter& i)

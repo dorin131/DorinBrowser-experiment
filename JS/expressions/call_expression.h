@@ -16,6 +16,8 @@ public:
     inline std::string get_type() override { return "CallExpression"; };
     Value execute(Interpreter&) override;
     void dump(int indent) override;
+
+    Node* find_in_scope(Interpreter&, Identifier*);
 private:
     Node* expression;
     std::vector<Node*> arguments;
