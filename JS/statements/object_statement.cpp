@@ -1,13 +1,13 @@
-#include "object.h"
+#include "object_statement.h"
 
 namespace js {
 
-Object::Object()
+ObjectStatement::ObjectStatement()
 {
 
 }
 
-Node* Object::get(Identifier i)
+Node* ObjectStatement::get(Identifier i)
 {
     auto search = object_map.find(i);
 
@@ -17,26 +17,26 @@ Node* Object::get(Identifier i)
     return new Literal(Token(Token::UNDEFINED, ""));
 };
 
-bool Object::has(Identifier i)
+bool ObjectStatement::has(Identifier i)
 {
     auto search = object_map.find(i);
     return search != object_map.end();
 }
 
-void Object::set(Identifier ident, Node* expr)
+void ObjectStatement::set(Identifier ident, Node* expr)
 {
     object_map.insert({ident, expr});
 };
 
-Value Object::execute(Interpreter &)
+Value ObjectStatement::execute(Interpreter &)
 {
     return Value(Value::OBJECT, "{}");
 }
 
-void Object::dump(int indent)
+void ObjectStatement::dump(int indent)
 {
     print_indent(indent);
-    std::cout << "ObjectLiteralExpression\n";
+    std::cout << "Object" << std::endl;
     // print object_map
 }
 

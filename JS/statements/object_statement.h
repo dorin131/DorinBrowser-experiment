@@ -1,16 +1,16 @@
 #ifndef OBJECTLITERALEXPRESSION_H
 #define OBJECTLITERALEXPRESSION_H
 
-#include "expression.h"
-#include "identifier.h"
-#include "literal.h"
+#include "statement.h"
+#include "../expressions/identifier.h"
+#include "../expressions/literal.h"
 
 namespace js {
 
-class Object : public Expression
+class ObjectStatement : public Statement
 {
 public:
-    Object();
+    ObjectStatement();
 
     Node* get(Identifier);
     bool has(Identifier);
@@ -19,7 +19,7 @@ public:
     // Overrides
     Value execute(Interpreter&) override;
     void dump(int indent) override;
-    inline std::string get_type() override { return "ObjectLiteralExpression"; };
+    inline std::string get_type() override { return "Object"; };
 private:
     std::map<Identifier, Node*> object_map;
     inline std::map<Identifier, Node*> get_map() { return object_map; };

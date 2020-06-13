@@ -5,7 +5,7 @@
 #include <vector>
 
 #include "statement.h"
-#include "../expressions/object.h"
+#include "../statements/object_statement.h"
 
 namespace js {
 
@@ -19,7 +19,7 @@ public:
      */
     void append(Statement*);
     inline std::list<Statement*> get_elements() { return source_elements; };
-    inline Object* get_local_scope() { return &local_scope; };
+    inline ObjectStatement* get_local_scope() { return &local_scope; };
 
     void associate_arguments(std::vector<Node*>);
     void add_parameters(std::list<Identifier>);
@@ -33,7 +33,7 @@ private:
      * @brief A list of Statements
      */
     std::list<Statement*> source_elements;
-    Object local_scope;
+    ObjectStatement local_scope;
     std::list<Identifier> parameters;
 };
 

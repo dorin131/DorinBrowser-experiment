@@ -90,7 +90,7 @@ Node* Parser::parse_expression(Precedence precedence)
         left = parse_function_declaration();
         break;
     case(Token::LBRACE):
-        left = parse_object();
+        left = parse_object_statement();
         break;
     default:
         throw SyntaxError("Unexpected token when parsing expression: " + current_token.get_value());
@@ -209,8 +209,11 @@ BlockStatement* Parser::parse_block_statement()
     return block_statement;
 }
 
-Identifier* Parser::parse_identifier()
+Expression* Parser::parse_identifier()
 {
+    if (peek_token_is(Token::PERIOD)) {
+        return parse_object_expression();
+    }
     return new Identifier(current_token);
 }
 
@@ -244,13 +247,13 @@ std::vector<Node*> Parser::parse_call_arguments()
     return arguments;
 }
 
-Object* Parser::parse_object()
+ObjectStatement* Parser::parse_object_statement()
 {
-    Object* obj = new Object();
+    auto obj = new ObjectStatement();
     while(!peek_token_is(Token::RBRACE)) {
-        expect_next_to_be(Token::IDENTIFIER);
+        expect_next_to_be(Token::IDENTIFIER, "Expected identifier");
         auto name = current_token;
-        expect_next_to_be(Token::COLON);
+        expect_next_to_be(Token::COLON, "Expected colon");
         next_token();
         auto expr = parse_expression(Precedence::LOWEST);
         obj->set(name, expr);
@@ -261,17 +264,31 @@ Object* Parser::parse_object()
     return obj;
 }
 
+ObjectExpression* Parser::parse_object_expression()
+{
+    Identifier name = Identifier(current_token);
+    std::list<Identifier> path;
+    next_token();
+    while (current_token_is(Token::IDENTIFIER) || current_token_is(Token::PERIOD)) {
+        if (current_token_is(Token::IDENTIFIER)) {
+            path.push_back(Identifier(current_token));
+        }
+        next_token();
+    }
+    return new ObjectExpression(name, path);
+}
+
 IfStatement* Parser::parse_if_statement()
 {
     return new IfStatement();
 }
 
-void Parser::expect_next_to_be(Token::Type type)
+void Parser::expect_next_to_be(Token::Type type, std::string msg)
 {
     if (peek_token_is(type)) {
         next_token();
     } else {
-        throw SyntaxError("Unexpected token");
+        throw SyntaxError("Unexpected token: " + msg);
     }
 }
 

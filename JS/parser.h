@@ -11,6 +11,7 @@
 #include "expressions/binary_expression.h"
 #include "expressions/call_expression.h"
 #include "expressions/literal.h"
+#include "expressions/object_expression.h"
 #include "statements/program.h"
 #include "statements/variable_statement.h"
 #include "statements/if_statement.h"
@@ -72,10 +73,11 @@ private:
     Literal* parse_literal_expression();
     Node* parse_grouped_expression();
     BinaryExpression* parse_binary_expression(Node*);
-    Identifier* parse_identifier();
+    Expression* parse_identifier();
     BlockStatement* parse_block_statement();
     CallExpression* parse_call_expression(Node*);
-    Object* parse_object();
+    ObjectStatement* parse_object_statement();
+    ObjectExpression* parse_object_expression();
     std::list<Identifier> parse_function_parameters();
     std::vector<Node*> parse_call_arguments();
 
@@ -85,7 +87,7 @@ private:
     bool peek_token_is(Token::Type);
     Precedence peek_precedence();
     Precedence current_precedence();
-    void expect_next_to_be(Token::Type);
+    void expect_next_to_be(Token::Type, std::string);
 };
 
 } //namespace js
