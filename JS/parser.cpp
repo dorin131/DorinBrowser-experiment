@@ -174,7 +174,7 @@ FunctionDeclaration* Parser::parse_function_declaration()
     if (!peek_token_is(Token::LBRACE)) {
         throw SyntaxError("Expected left brace");
     }
-    next_token(); // LBRACE
+    next_token();
     auto body = parse_block_statement();
 
     return new FunctionDeclaration(name, body, params);

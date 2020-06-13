@@ -20,7 +20,7 @@ Value FunctionDeclaration::execute(Interpreter& i)
 {
     // If function has name, put on global scope
     if (name.get_token().get_value().size() > 0) {
-        i.get_global()->set(name, body);
+        i.get_global()->set(name, this);
     }
     return Value(Value::UNDEFINED, "");
 };
