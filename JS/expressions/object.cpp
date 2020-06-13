@@ -30,7 +30,7 @@ void Object::set(Identifier ident, Node* expr)
 
 Value Object::execute(Interpreter &)
 {
-    return Value(Value::UNDEFINED, "");
+    return Value(Value::OBJECT, "{}");
 }
 
 void Object::dump(int indent)

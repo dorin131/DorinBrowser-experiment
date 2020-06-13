@@ -89,6 +89,9 @@ Node* Parser::parse_expression(Precedence precedence)
     case(Token::FUNCTION):
         left = parse_function_declaration();
         break;
+    case(Token::LBRACE):
+        left = parse_object();
+        break;
     default:
         throw SyntaxError("Unexpected token when parsing expression: " + current_token.get_value());
     }
@@ -239,6 +242,16 @@ std::vector<Node*> Parser::parse_call_arguments()
         next_token();
     }
     return arguments;
+}
+
+Object* Parser::parse_object()
+{
+    while(!peek_token_is(Token::RBRACE)) {
+
+    }
+    next_token();
+
+    return new Object;
 }
 
 IfStatement* Parser::parse_if_statement()

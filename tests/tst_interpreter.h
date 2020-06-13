@@ -46,6 +46,9 @@ std::vector<test> tests = {
     test("var x = 1; function f(){ var x = 2; return x; }; f();", js::Value::NUMBER, "2"),
     test("var x = 1; function f(){ var x = 2; return x; }; x;", js::Value::NUMBER, "1"),
     test("var dorin = function(x, y) { return x + y; }; var yo = function() { return 3; }; dorin(10, yo());", js::Value::NUMBER, "13"),
+    test("{}", js::Value::OBJECT, "{}"),
+    test("var o = {}", js::Value::UNDEFINED, ""),
+    test("var o = {}; o;", js::Value::OBJECT, "{}"),
 };
 
 TEST(Interpreter, AllTests)
