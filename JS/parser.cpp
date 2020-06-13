@@ -246,17 +246,33 @@ std::vector<Node*> Parser::parse_call_arguments()
 
 Object* Parser::parse_object()
 {
+    Object* obj = new Object();
     while(!peek_token_is(Token::RBRACE)) {
-
+        expect_next_to_be(Token::IDENTIFIER);
+        auto name = current_token;
+        expect_next_to_be(Token::COLON);
+        next_token();
+        auto expr = parse_expression(Precedence::LOWEST);
+        obj->set(name, expr);
+        if (peek_token_is(Token::COMMA)) next_token();
     }
     next_token();
 
-    return new Object;
+    return obj;
 }
 
 IfStatement* Parser::parse_if_statement()
 {
     return new IfStatement();
+}
+
+void Parser::expect_next_to_be(Token::Type type)
+{
+    if (peek_token_is(type)) {
+        next_token();
+    } else {
+        throw SyntaxError("Unexpected token");
+    }
 }
 
 } // namespace js

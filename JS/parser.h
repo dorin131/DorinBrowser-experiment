@@ -85,6 +85,7 @@ private:
     bool peek_token_is(Token::Type);
     Precedence peek_precedence();
     Precedence current_precedence();
+    void expect_next_to_be(Token::Type);
 };
 
 } //namespace js
