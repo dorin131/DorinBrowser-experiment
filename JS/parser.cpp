@@ -157,6 +157,14 @@ VariableStatement* Parser::parse_variable_statement()
 FunctionDeclaration* Parser::parse_function_declaration()
 {
     next_token();
+
+    Identifier name;
+
+    if (current_token_is(Token::IDENTIFIER)) {
+        name = Identifier(current_token);
+        next_token();
+    }
+
     if (!current_token_is(Token::LPAREN)) {
         throw SyntaxError("Expected left paren after function declaration");
     }
@@ -169,7 +177,7 @@ FunctionDeclaration* Parser::parse_function_declaration()
     next_token(); // LBRACE
     auto body = parse_block_statement();
 
-    return new FunctionDeclaration(body, params);
+    return new FunctionDeclaration(name, body, params);
 }
 
 std::list<Identifier> Parser::parse_function_parameters()

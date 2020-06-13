@@ -8,6 +8,11 @@ Identifier::Identifier(Token token): token(token)
 
 }
 
+Identifier::Identifier()
+{
+    // defaults to UNDEFINED token
+}
+
 bool Identifier::operator<(const Identifier& rhs) const
 {
     return token.get_value() < rhs.get_token().get_value();

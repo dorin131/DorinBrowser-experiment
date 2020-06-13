@@ -10,6 +10,7 @@ class Identifier : public Expression
 {
 public:
     Identifier(Token token);
+    Identifier();
 
     inline Token get_token() const { return token; };
 
@@ -24,7 +25,7 @@ public:
     // Comparator because we want to use this class as map key
     bool operator<(const Identifier&) const;
 private:
-    Token token;
+    Token token = Token(Token::IDENTIFIER, "");
 };
 
 } // namespace js

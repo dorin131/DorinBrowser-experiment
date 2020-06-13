@@ -40,6 +40,9 @@ std::vector<test> tests = {
     test("var f = function(a) { return a; }; f(88)", js::Value::NUMBER, "88"),
     test("var f = function(a,b,c) { return a+b-c; }; var x = 2;", js::Value::UNDEFINED, ""),
     test("var f = function(a,b,c) { return a+b-c; }; var x = 2; f(x,x,3)", js::Value::NUMBER, "1"),
+    test("function f() { return 3; };", js::Value::UNDEFINED, ""),
+    test("function f() { return 4; }; f()", js::Value::NUMBER, "4"),
+//    test("function f(a,b,c) { return a+b-c; }; var x = 2; f(x,x,3)", js::Value::NUMBER, "1"),
 };
 
 TEST(Interpreter, AllTests)

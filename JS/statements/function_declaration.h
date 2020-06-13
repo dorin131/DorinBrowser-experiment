@@ -10,7 +10,7 @@ namespace js {
 class FunctionDeclaration : public Statement
 {
 public:
-    FunctionDeclaration(BlockStatement*, std::list<Identifier>);
+    FunctionDeclaration(Identifier name, BlockStatement* body, std::list<Identifier> parameters);
 
     inline BlockStatement* get_body() { return body; };
 
@@ -19,6 +19,7 @@ public:
     void dump(int indent) override;
     inline std::string get_type() override { return "FunctionDeclaration"; };
 private:
+    Identifier name;
     BlockStatement* body;
     std::list<Identifier> parameters;
 };
