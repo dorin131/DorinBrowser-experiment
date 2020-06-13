@@ -178,9 +178,9 @@ std::list<Identifier> Parser::parse_function_parameters()
     next_token();
     while (!current_token_is(Token::RPAREN)) {
         if (current_token_is(Token::IDENTIFIER)) {
-            parameters.push_front(current_token);
-            next_token();
+            parameters.push_back(current_token);
         }
+        next_token();
     }
     return parameters;
 }
@@ -224,10 +224,12 @@ CallExpression* Parser::parse_call_expression(Node * node)
 std::vector<Node*> Parser::parse_call_arguments()
 {
     std::vector<Node*> arguments;
-    while(!current_token_is(Token::RPAREN) && !peek_token_is(Token::RPAREN)) {
-        arguments.push_back(parse_expression(Precedence::LOWEST));
-    }
     next_token();
+    while(!current_token_is(Token::RPAREN)) {
+        arguments.push_back(parse_expression(Precedence::LOWEST));
+        if(peek_token_is(Token::COMMA)) next_token();
+        next_token();
+    }
     return arguments;
 }
 
