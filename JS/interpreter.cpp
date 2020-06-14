@@ -53,4 +53,15 @@ bool Interpreter::is_return_statement(Statement* node)
     return node->get_type() == "ReturnStatement";
 }
 
+Node* Interpreter::find_in_scope(Identifier* ident)
+{
+    auto local_scopes = get_local_scopes();
+    for(ObjectStatement* local_scope : local_scopes) {
+        if(local_scope->has(*ident)) {
+            return local_scope->get(*ident);
+        }
+    }
+    return get_global()->get(*ident);
+}
+
 } //namespace js

@@ -28,18 +28,7 @@ void Identifier::dump(int indent)
 
 Value Identifier::execute(Interpreter& i)
 {
-    return find_in_scope(i, this)->execute(i);
+    return i.find_in_scope(this)->execute(i);
 };
-
-Node* Identifier::find_in_scope(Interpreter& inter, Identifier* ident)
-{
-    auto local_scopes = inter.get_local_scopes();
-    for(ObjectStatement* local_scope : local_scopes) {
-        if(local_scope->has(*ident)) {
-            return local_scope->get(*ident);
-        }
-    }
-    return inter.get_global()->get(*ident);
-}
 
 } // namespace js

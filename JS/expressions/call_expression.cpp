@@ -14,7 +14,7 @@ Value CallExpression::execute(Interpreter& i)
     Node* callee = expression;
 
     if (expression->get_type() == "Identifier") {
-        callee = find_in_scope(i, static_cast<Identifier*>(callee));
+        callee = i.find_in_scope(static_cast<Identifier*>(callee));
     }
 
     if (callee->get_type() == "FunctionDeclaration") {
@@ -24,17 +24,6 @@ Value CallExpression::execute(Interpreter& i)
     }
 
     return callee->execute(i);
-}
-
-Node* CallExpression::find_in_scope(Interpreter& inter, Identifier* ident)
-{
-    auto local_scopes = inter.get_local_scopes();
-    for(ObjectStatement* local_scope : local_scopes) {
-        if(local_scope->has(*ident)) {
-            return local_scope->get(*ident);
-        }
-    }
-    return inter.get_global()->get(*ident);
 }
 
 void CallExpression::dump(int indent)

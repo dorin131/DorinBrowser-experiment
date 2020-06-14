@@ -21,8 +21,6 @@ public:
 
     // Comparator because we want to use this class as map key
     bool operator<(const Identifier&) const;
-
-    Node* find_in_scope(Interpreter&, Identifier*);
 private:
     Token token = Token(Token::IDENTIFIER, "");
 };

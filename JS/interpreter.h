@@ -18,6 +18,8 @@ public:
 
     inline ObjectStatement* get_global() { return &global_scope; };
     inline std::list<ObjectStatement*> get_local_scopes() { return local_scopes; };
+
+    Node* find_in_scope(Identifier*);
 private:
     ObjectStatement global_scope;
     std::list<ObjectStatement*> local_scopes;
