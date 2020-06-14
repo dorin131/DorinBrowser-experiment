@@ -273,6 +273,7 @@ ObjectExpression* Parser::parse_object_expression()
         if (current_token_is(Token::PERIOD)) next_token();
         if (current_token_is(Token::IDENTIFIER)) {
             path.push_back(Identifier(current_token));
+            if (peek_token_is(Token::PERIOD)) next_token();
         }
     }
     return new ObjectExpression(name, path);

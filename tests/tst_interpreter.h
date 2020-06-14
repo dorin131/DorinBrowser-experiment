@@ -53,6 +53,9 @@ std::vector<test> tests = {
     test("var o = {a:1,b:2}; o;", js::Value::OBJECT, "{}"),
     test("var o = {a:1,b:2}; o.a;", js::Value::NUMBER, "1"),
     test("var o = {a:1,b:2}; o.a + o.b;", js::Value::NUMBER, "3"),
+    test("var o = {a:{b:2}}; o.a.b;", js::Value::NUMBER, "2"),
+    test("var o = {a:{b:{c:777}}}; o.a.b.c;", js::Value::NUMBER, "777"),
+//    test("var x = 4;var o = {a:{b:{c:2+5*5,d:x}}}; o.a.b.c + o.a.b.d;", js::Value::NUMBER, "31"),
 };
 
 TEST(Interpreter, AllTests)
