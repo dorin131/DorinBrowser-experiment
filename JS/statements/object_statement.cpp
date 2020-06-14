@@ -36,7 +36,7 @@ Value ObjectStatement::execute(Interpreter &)
 void ObjectStatement::dump(int indent)
 {
     print_indent(indent);
-    std::cout << "Object" << std::endl;
+    std::cout << "ObjectStatement" << std::endl;
     // print object_map
 }
 
