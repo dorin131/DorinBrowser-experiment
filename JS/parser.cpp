@@ -102,8 +102,18 @@ Node* Parser::parse_expression(Precedence precedence)
         case(Token::LPAREN):
             left = parse_call_expression(left);
             break;
-        default:
+        case(Token::ADD):
+        case(Token::SUB):
+        case(Token::DIV):
+        case(Token::MUL):
+        case(Token::EQ):
+        case(Token::NE):
+        case(Token::GT):
+        case(Token::LT):
             left = parse_binary_expression(left);
+            break;
+        default:
+            return left;
         }
     }
 

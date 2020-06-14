@@ -22,6 +22,7 @@ struct test {
 std::vector<test> tests = {
     test("1+2", js::Value::NUMBER, "3"),
     test("2*3;", js::Value::NUMBER, "6"),
+    test("2+5*5;", js::Value::NUMBER, "27"),
     test("2 * (3 + 1);", js::Value::NUMBER, "8"),
     test("\"hello\" + \"world\"", js::Value::STRING, "helloworld"),
     test("\"hello\" + 100", js::Value::STRING, "hello100"),
@@ -55,7 +56,7 @@ std::vector<test> tests = {
     test("var o = {a:1,b:2}; o.a + o.b;", js::Value::NUMBER, "3"),
     test("var o = {a:{b:2}}; o.a.b;", js::Value::NUMBER, "2"),
     test("var o = {a:{b:{c:777}}}; o.a.b.c;", js::Value::NUMBER, "777"),
-//    test("var x = 4;var o = {a:{b:{c:2+5*5,d:x}}}; o.a.b.c + o.a.b.d;", js::Value::NUMBER, "31"),
+    test("var x = 4;var o = {a:{b:{c:2+5*5,d:x}}}; o.a.b.c + o.a.b.d;", js::Value::NUMBER, "31"),
 };
 
 TEST(Interpreter, AllTests)

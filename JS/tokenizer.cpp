@@ -92,7 +92,7 @@ Token Tokenizer::next_token()
         t = Token(Token::SUB, ch);
         break;
     case '*':
-        t = Token(Token::SUB, ch);
+        t = Token(Token::MUL, ch);
         break;
     case '/':
         t = Token(Token::DIV, ch);
