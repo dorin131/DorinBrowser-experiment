@@ -52,7 +52,7 @@ std::vector<test> tests = {
     test("var o = {a:1}; o;", js::Value::OBJECT, "{}"),
     test("var o = {a:1,b:2}; o;", js::Value::OBJECT, "{}"),
     test("var o = {a:1,b:2}; o.a;", js::Value::NUMBER, "1"),
-//    test("var o = {a:1,b:2}; o.a + o.b;", js::Value::NUMBER, "3"),
+    test("var o = {a:1,b:2}; o.a + o.b;", js::Value::NUMBER, "3"),
 };
 
 TEST(Interpreter, AllTests)

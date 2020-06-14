@@ -269,11 +269,11 @@ ObjectExpression* Parser::parse_object_expression()
     Identifier name = Identifier(current_token);
     std::list<Identifier> path;
     next_token();
-    while (current_token_is(Token::IDENTIFIER) || current_token_is(Token::PERIOD)) {
+    while (peek_token_is(Token::IDENTIFIER) || peek_token_is(Token::PERIOD)) {
+        if (current_token_is(Token::PERIOD)) next_token();
         if (current_token_is(Token::IDENTIFIER)) {
             path.push_back(Identifier(current_token));
         }
-        next_token();
     }
     return new ObjectExpression(name, path);
 }
