@@ -4,6 +4,7 @@
 #include <list>
 
 #include "expression.h"
+#include "../interpreter.h"
 #include "../statements/object_statement.h"
 
 namespace js {

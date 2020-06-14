@@ -8,10 +8,14 @@ ObjectExpression::ObjectExpression(Identifier name, std::list<Identifier> path)
 
 }
 
-Value ObjectExpression::execute(Interpreter &)
+Value ObjectExpression::execute(Interpreter & i)
 {
-    // TODO: find name in scope then drill in with path
-    return Value(Value::OBJECT, "{}");
+    ObjectStatement* obj = static_cast<ObjectStatement*>(i.find_in_scope(&name));
+    Node* expr = obj;
+    for(Identifier id : path) {
+        expr = static_cast<ObjectStatement*>(expr)->get(id);
+    }
+    return expr->execute(i);
 }
 
 void ObjectExpression::dump(int indent)
