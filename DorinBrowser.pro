@@ -1,5 +1,5 @@
 TEMPLATE = subdirs
 
 SUBDIRS = JS \
-    GUI \
+    Browser \
     tests
