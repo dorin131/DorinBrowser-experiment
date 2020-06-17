@@ -7,6 +7,8 @@ Browser::Browser(QWidget *parent)
 {
     ui->setupUi(this);
     ui->address->setText("https://");
+
+    connect(ui->goButton, SIGNAL(released()), this, SLOT(go()));
 }
 
 Browser::~Browser()
@@ -16,5 +18,7 @@ Browser::~Browser()
 
 void Browser::go()
 {
-
+    QMessageBox* d = new QMessageBox(this);
+    d->setText("Hello world!");
+    d->exec();
 }
