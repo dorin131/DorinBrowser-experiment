@@ -22,9 +22,11 @@ Value Interpreter::run(BlockStatement* block_statement)
         }
     }
 
+    auto top_level = is_top_level_block_statement(block_statement);
+
     exit_scope();
 
-    if (!is_top_level_block_statement(block_statement) && !has_returned) {
+    if (!top_level && !has_returned) {
         return Value(Value::UNDEFINED, "");
     }
 
@@ -34,13 +36,12 @@ Value Interpreter::run(BlockStatement* block_statement)
 void Interpreter::enter_scope(BlockStatement* block_statement)
 {
     scope_stack.push_front(block_statement);
-    local_scopes.push_front(block_statement->get_local_scope());
 }
 
 void Interpreter::exit_scope()
 {
+    //delete scope_stack.front();
     scope_stack.pop_front();
-    local_scopes.pop_front();
 }
 
 bool Interpreter::is_top_level_block_statement(BlockStatement* block_statement)
@@ -55,10 +56,9 @@ bool Interpreter::is_return_statement(Statement* node)
 
 Node* Interpreter::find_in_scope(Identifier* ident)
 {
-    auto local_scopes = get_local_scopes();
-    for(ObjectStatement* local_scope : local_scopes) {
-        if(local_scope->has(*ident)) {
-            return local_scope->get(*ident);
+    for(BlockStatement* block : scope_stack) {
+        if(block->get_local_scope()->has(*ident)) {
+            return block->get_local_scope()->get(*ident);
         }
     }
     return get_global()->get(*ident);

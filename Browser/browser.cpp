@@ -19,6 +19,6 @@ Browser::~Browser()
 void Browser::go()
 {
     QMessageBox* d = new QMessageBox(this);
-    d->setText("Hello world!");
+    d->setText("Getting: " + ui->address->text());
     d->exec();
 }
