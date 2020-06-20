@@ -27,7 +27,7 @@ void BlockStatement::associate_arguments(std::vector<Node*> args)
 {
     int i = 0;
     for(Identifier id : parameters) {
-        local_scope.set(id, args[i]);
+        get_local_scope()->set(id, args[i]);
         i++;
     }
 }

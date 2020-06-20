@@ -72,11 +72,13 @@ TEST(Interpreter, AllTests)
             GTEST_NONFATAL_FAILURE_("");
             return;
         }
+
+        program->dump(0);
+
         js::Interpreter interpreter;
         auto result = interpreter.run(program);
 
         std::cout << std::endl << test.code << std::endl;
-        program->dump(0);
 
         EXPECT_EQ(result.get_type(), test.result_type);
         EXPECT_EQ(result.get_value(), test.result_value);
