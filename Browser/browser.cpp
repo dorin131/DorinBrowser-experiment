@@ -1,5 +1,5 @@
 #include "browser.h"
-#include "ui_mainwindow.h"
+#include "ui_browser.h"
 
 Browser::Browser(QWidget *parent)
     : QMainWindow(parent)
