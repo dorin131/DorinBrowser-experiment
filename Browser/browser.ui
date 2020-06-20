@@ -114,16 +114,16 @@
        </size>
       </property>
       <property name="currentIndex">
-       <number>1</number>
+       <number>0</number>
       </property>
       <widget class="QWidget" name="console">
        <attribute name="title">
-        <string>Tab 1</string>
+        <string>Console</string>
        </attribute>
       </widget>
       <widget class="QWidget" name="source">
        <attribute name="title">
-        <string>Tab 2</string>
+        <string>Source</string>
        </attribute>
       </widget>
      </widget>
