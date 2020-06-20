@@ -7,12 +7,12 @@
 
 namespace js {
 
-class FunctionDeclaration : public Statement
+class FunctionDeclaration : public Statement, public std::enable_shared_from_this<FunctionDeclaration>
 {
 public:
-    FunctionDeclaration(Identifier name, BlockStatement* body, std::list<Identifier> parameters);
+    FunctionDeclaration(Identifier name, std::shared_ptr<BlockStatement> body, std::list<Identifier> parameters);
 
-    inline BlockStatement* get_body() { return body; };
+    inline std::shared_ptr<BlockStatement> get_body() { return body; };
 
     // Overrides
     Value execute(Interpreter&) override;
@@ -20,7 +20,7 @@ public:
     inline std::string get_type() override { return "FunctionDeclaration"; };
 private:
     Identifier name;
-    BlockStatement* body;
+    std::shared_ptr<BlockStatement> body;
     std::list<Identifier> parameters;
 };
 

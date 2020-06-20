@@ -1,6 +1,8 @@
 #ifndef IDENTIFIER_H
 #define IDENTIFIER_H
 
+#include <memory>
+
 #include "expression.h"
 #include "../token.h"
 

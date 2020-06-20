@@ -1,6 +1,8 @@
 #ifndef RETURNSTATEMENT_H
 #define RETURNSTATEMENT_H
 
+#include <memory>
+
 #include "statement.h"
 
 namespace js {
@@ -8,17 +10,17 @@ namespace js {
 class ReturnStatement : public Statement
 {
 public:
-    ReturnStatement(Node* expression);
+    ReturnStatement(std::shared_ptr<Node> expression);
 
-    inline Node* get_expression() { return expression; };
-    inline void set_expression(Node* n) { expression = n; };
+    inline std::shared_ptr<Node> get_expression() { return expression; };
+    inline void set_expression(std::shared_ptr<Node> n) { expression = n; };
 
     // Overrides
     Value execute(Interpreter&) override;
     void dump(int indent) override;
     inline std::string get_type() override { return "ReturnStatement"; };
 private:
-    Node* expression;
+    std::shared_ptr<Node> expression;
 };
 
 } // namespace js

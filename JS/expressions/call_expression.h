@@ -10,15 +10,15 @@ namespace js {
 class CallExpression : public Expression
 {
 public:
-    CallExpression(Node*, std::vector<Node*>);
+    CallExpression(std::shared_ptr<Node>, std::vector<std::shared_ptr<Node>>);
 
     // Overrides
     inline std::string get_type() override { return "CallExpression"; };
     Value execute(Interpreter&) override;
     void dump(int indent) override;
 private:
-    Node* expression;
-    std::vector<Node*> arguments;
+    std::shared_ptr<Node> expression;
+    std::vector<std::shared_ptr<Node>> arguments;
 };
 
 } // namespace js

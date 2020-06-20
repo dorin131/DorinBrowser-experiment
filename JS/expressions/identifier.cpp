@@ -28,7 +28,7 @@ void Identifier::dump(int indent)
 
 Value Identifier::execute(Interpreter& i)
 {
-    return i.find_in_scope(this)->execute(i);
+    return i.find_in_scope(*this)->execute(i);
 };
 
 } // namespace js

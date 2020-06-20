@@ -42,9 +42,9 @@ Parser::Precedence Parser::peek_precedence()
     return Precedence::LOWEST;
 }
 
-Program* Parser::parse_program()
+std::shared_ptr<Program> Parser::parse_program()
 {
-    Program* program = new Program();
+    auto program = std::make_shared<Program>();
     while (!current_token_is(Token::EOS)) {
         program->append(parse_statement());
         next_token();
@@ -52,7 +52,7 @@ Program* Parser::parse_program()
     return program;
 }
 
-Statement* Parser::parse_statement()
+std::shared_ptr<Statement> Parser::parse_statement()
 {
     switch(current_token.get_type()) {
     case(Token::VAR):
@@ -66,14 +66,14 @@ Statement* Parser::parse_statement()
     }
 }
 
-ExpressionStatement* Parser::parse_expression_statement()
+std::shared_ptr<ExpressionStatement> Parser::parse_expression_statement()
 {
-    return new ExpressionStatement(parse_expression(Precedence::LOWEST));
+    return std::make_shared<ExpressionStatement>(parse_expression(Precedence::LOWEST));
 }
 
-Node* Parser::parse_expression(Precedence precedence)
+std::shared_ptr<Node> Parser::parse_expression(Precedence precedence)
 {
-    Node* left;
+    std::shared_ptr<Node> left;
 
     switch(current_token.get_type()) {
     case(Token::NUMBER):
@@ -124,20 +124,20 @@ Node* Parser::parse_expression(Precedence precedence)
     return left;
 }
 
-Literal* Parser::parse_literal_expression()
+std::shared_ptr<Literal> Parser::parse_literal_expression()
 {
-    return new Literal(current_token);
+    return std::make_shared<Literal>(current_token);
 }
 
-BinaryExpression* Parser::parse_binary_expression(Node* left)
+std::shared_ptr<BinaryExpression> Parser::parse_binary_expression(std::shared_ptr<Node> left)
 {
     Token token = current_token;
     Precedence precedence = current_precedence();
     next_token();
-    return new BinaryExpression(token.get_value(), left, parse_expression(precedence));
+    return std::make_shared<BinaryExpression>(token.get_value(), left, parse_expression(precedence));
 }
 
-Node* Parser::parse_grouped_expression()
+std::shared_ptr<Node> Parser::parse_grouped_expression()
 {
     next_token();
     auto expression = parse_expression(Precedence::LOWEST);
@@ -149,7 +149,7 @@ Node* Parser::parse_grouped_expression()
     return expression;
 }
 
-VariableStatement* Parser::parse_variable_statement()
+std::shared_ptr<VariableStatement> Parser::parse_variable_statement()
 {
     next_token();
     if (!current_token_is(Token::IDENTIFIER)) {
@@ -162,12 +162,12 @@ VariableStatement* Parser::parse_variable_statement()
         throw SyntaxError("Expected variable value assignment");
     }
     next_token();
-    Node* expression = parse_expression(Precedence::LOWEST);
+    std::shared_ptr<Node> expression = parse_expression(Precedence::LOWEST);
 
-    return new VariableStatement(Identifier(identifier), expression);
+    return std::make_shared<VariableStatement>(Identifier(identifier), expression);
 }
 
-FunctionDeclaration* Parser::parse_function_declaration()
+std::shared_ptr<FunctionDeclaration> Parser::parse_function_declaration()
 {
     next_token();
 
@@ -190,7 +190,7 @@ FunctionDeclaration* Parser::parse_function_declaration()
     next_token();
     auto body = parse_block_statement();
 
-    return new FunctionDeclaration(name, body, params);
+    return std::make_shared<FunctionDeclaration>(name, body, params);
 }
 
 std::list<Identifier> Parser::parse_function_parameters()
@@ -206,10 +206,10 @@ std::list<Identifier> Parser::parse_function_parameters()
     return parameters;
 }
 
-BlockStatement* Parser::parse_block_statement()
+std::shared_ptr<BlockStatement> Parser::parse_block_statement()
 {
     next_token();
-    auto block_statement = new BlockStatement();
+    auto block_statement = std::make_shared<BlockStatement>();
 
     while (!current_token_is(Token::RBRACE)) {
         block_statement->append(parse_statement());
@@ -219,19 +219,19 @@ BlockStatement* Parser::parse_block_statement()
     return block_statement;
 }
 
-Expression* Parser::parse_identifier()
+std::shared_ptr<Expression> Parser::parse_identifier()
 {
     if (peek_token_is(Token::PERIOD)) {
         return parse_object_expression();
     }
-    return new Identifier(current_token);
+    return std::make_shared<Identifier>(current_token);
 }
 
-ReturnStatement* Parser::parse_return_statement()
+std::shared_ptr<ReturnStatement> Parser::parse_return_statement()
 {
     next_token();
 
-    auto return_statement =  new ReturnStatement(parse_expression(Precedence::LOWEST));
+    auto return_statement = std::make_shared<ReturnStatement>(parse_expression(Precedence::LOWEST));
 
     if (peek_token_is(Token::SEMICOLON)) {
         next_token();
@@ -240,14 +240,14 @@ ReturnStatement* Parser::parse_return_statement()
     return return_statement;
 }
 
-CallExpression* Parser::parse_call_expression(Node * node)
+std::shared_ptr<CallExpression> Parser::parse_call_expression(std::shared_ptr<Node> node)
 {
-    return new CallExpression(node, parse_call_arguments());
+    return std::make_shared<CallExpression>(node, parse_call_arguments());
 }
 
-std::vector<Node*> Parser::parse_call_arguments()
+std::vector<std::shared_ptr<Node>> Parser::parse_call_arguments()
 {
-    std::vector<Node*> arguments;
+    std::vector<std::shared_ptr<Node>> arguments;
     next_token();
     while(!current_token_is(Token::RPAREN)) {
         arguments.push_back(parse_expression(Precedence::LOWEST));
@@ -257,9 +257,9 @@ std::vector<Node*> Parser::parse_call_arguments()
     return arguments;
 }
 
-ObjectStatement* Parser::parse_object_statement()
+std::shared_ptr<ObjectStatement> Parser::parse_object_statement()
 {
-    auto obj = new ObjectStatement();
+    auto obj = std::make_shared<ObjectStatement>();
     while(!peek_token_is(Token::RBRACE)) {
         expect_next_to_be(Token::IDENTIFIER, "Expected identifier");
         auto name = current_token;
@@ -274,7 +274,7 @@ ObjectStatement* Parser::parse_object_statement()
     return obj;
 }
 
-ObjectExpression* Parser::parse_object_expression()
+std::shared_ptr<ObjectExpression> Parser::parse_object_expression()
 {
     Identifier name = Identifier(current_token);
     std::list<Identifier> path;
@@ -286,12 +286,12 @@ ObjectExpression* Parser::parse_object_expression()
             if (peek_token_is(Token::PERIOD)) next_token();
         }
     }
-    return new ObjectExpression(name, path);
+    return std::make_shared<ObjectExpression>(name, path);
 }
 
-IfStatement* Parser::parse_if_statement()
+std::shared_ptr<IfStatement> Parser::parse_if_statement()
 {
-    return new IfStatement();
+    return std::make_shared<IfStatement>();
 }
 
 void Parser::expect_next_to_be(Token::Type type, std::string msg)

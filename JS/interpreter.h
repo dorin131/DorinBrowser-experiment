@@ -14,23 +14,22 @@ class Interpreter
 public:
     Interpreter();
 
-    Value run(BlockStatement*);
+    Value run(std::shared_ptr<BlockStatement>);
 
-    inline ObjectStatement* get_global() { return &global_scope; };
-    inline std::list<BlockStatement*> get_scope_stack() { return scope_stack; };
+    inline std::shared_ptr<ObjectStatement> get_global() { return global_scope; };
+    inline std::list<std::shared_ptr<BlockStatement>> get_scope_stack() { return scope_stack; };
 
-    Node* find_in_scope(Identifier*);
+    std::shared_ptr<Node> find_in_scope(Identifier);
 private:
-    ObjectStatement global_scope;
-    //std::list<ObjectStatement*> local_scopes;
-    std::list<BlockStatement*> scope_stack;
+    std::shared_ptr<ObjectStatement> global_scope = std::make_shared<ObjectStatement>();
+    std::list<std::shared_ptr<BlockStatement>> scope_stack;
 
-    void enter_scope(BlockStatement*);
+    void enter_scope(std::shared_ptr<BlockStatement>);
     void exit_scope();
 
     // Helpers
-    bool is_top_level_block_statement(BlockStatement*);
-    bool is_return_statement(Statement*);
+    bool is_top_level_block_statement(std::shared_ptr<BlockStatement>);
+    bool is_return_statement(std::shared_ptr<Statement>);
 };
 
 } // namespace js

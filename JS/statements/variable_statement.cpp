@@ -3,7 +3,7 @@
 
 namespace js {
 
-VariableStatement::VariableStatement(Identifier ident, Node* expr)
+VariableStatement::VariableStatement(Identifier ident, std::shared_ptr<Node> expr)
     : identifier(ident), expression(expr)
 {
 

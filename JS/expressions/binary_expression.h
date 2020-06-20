@@ -2,6 +2,7 @@
 #define BINARYEXPRESSION_H
 
 #include <iostream>
+#include <memory>
 
 #include "../error.h"
 #include "expression.h"
@@ -11,10 +12,10 @@ namespace js {
 class BinaryExpression : public Expression
 {
 public:
-    BinaryExpression(std::string op, Node* left, Node* right);
+    BinaryExpression(std::string op, std::shared_ptr<Node> left, std::shared_ptr<Node> right);
 
-    inline Node* get_left() { return left; };
-    inline Node* get_right() { return right; };
+    inline std::shared_ptr<Node> get_left() { return left; };
+    inline std::shared_ptr<Node> get_right() { return right; };
     inline std::string get_op() { return op; };
 
     // Overrides
@@ -23,8 +24,8 @@ public:
     void dump(int indent) override;
 private:
     std::string op;
-    Node* left;
-    Node* right;
+    std::shared_ptr<Node> left;
+    std::shared_ptr<Node> right;
 
     Value string_arithmetic(Value, Value) const;
     Value number_arithmetic(Value, Value) const;

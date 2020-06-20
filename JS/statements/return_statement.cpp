@@ -2,7 +2,7 @@
 
 namespace js {
 
-ReturnStatement::ReturnStatement(Node* exp)
+ReturnStatement::ReturnStatement(std::shared_ptr<Node> exp)
     : expression(exp)
 {
 

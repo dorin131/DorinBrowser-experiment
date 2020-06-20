@@ -2,6 +2,7 @@
 #define NODE_H
 
 #include <iostream>
+#include <memory>
 
 #include "value.h"
 

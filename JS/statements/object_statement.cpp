@@ -7,14 +7,14 @@ ObjectStatement::ObjectStatement()
 
 }
 
-Node* ObjectStatement::get(Identifier i)
+std::shared_ptr<Node> ObjectStatement::get(Identifier i)
 {
     auto search = object_map.find(i);
 
     if (search != object_map.end()) {
         return search->second;
     }
-    return new Literal(Token(Token::UNDEFINED, ""));
+    return std::make_shared<Literal>(Token(Token::UNDEFINED, ""));
 };
 
 bool ObjectStatement::has(Identifier i)
@@ -23,7 +23,7 @@ bool ObjectStatement::has(Identifier i)
     return search != object_map.end();
 }
 
-void ObjectStatement::set(Identifier ident, Node* expr)
+void ObjectStatement::set(Identifier ident, std::shared_ptr<Node> expr)
 {
     object_map.insert({ident, expr});
 };

@@ -13,7 +13,7 @@ int main()
 
         js::Tokenizer t = js::Tokenizer(cmd);
         auto p = js::Parser(t);
-        js::Program* program;
+        std::shared_ptr<js::Program> program;
         try {
             program = p.parse_program();
         } catch (js::SyntaxError e) {

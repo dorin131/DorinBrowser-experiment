@@ -1,6 +1,8 @@
 #ifndef VARIABLESTATEMENT_H
 #define VARIABLESTATEMENT_H
 
+#include <memory>
+
 #include "statement.h"
 #include "../expressions/expression.h"
 #include "../expressions/identifier.h"
@@ -10,7 +12,7 @@ namespace js {
 class VariableStatement : public Statement
 {
 public:
-    VariableStatement(Identifier ident, Node* expr);
+    VariableStatement(Identifier ident, std::shared_ptr<Node> expr);
 
     // Overrides
     Value execute(Interpreter&) override;
@@ -18,7 +20,7 @@ public:
     inline std::string get_type() override { return "VariableStatement"; };
 private:
     Identifier identifier;
-    Node* expression;
+    std::shared_ptr<Node> expression;
 };
 } // namespace js
 

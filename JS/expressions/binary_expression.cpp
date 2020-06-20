@@ -2,7 +2,7 @@
 
 namespace js {
 
-BinaryExpression::BinaryExpression(std::string op, Node* left, Node* right)
+BinaryExpression::BinaryExpression(std::string op, std::shared_ptr<Node> left, std::shared_ptr<Node> right)
     : op(op), left(left), right(right)
 {
 

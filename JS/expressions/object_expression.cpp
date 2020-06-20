@@ -10,10 +10,10 @@ ObjectExpression::ObjectExpression(Identifier name, std::list<Identifier> path)
 
 Value ObjectExpression::execute(Interpreter & i)
 {
-    ObjectStatement* obj = static_cast<ObjectStatement*>(i.find_in_scope(&name));
-    Node* expr = obj;
+    std::shared_ptr<ObjectStatement> obj = std::static_pointer_cast<ObjectStatement>(i.find_in_scope(name));
+    std::shared_ptr<Node> expr = obj;
     for(Identifier id : path) {
-        expr = static_cast<ObjectStatement*>(expr)->get(id);
+        expr = (std::static_pointer_cast<ObjectStatement>(expr))->get(id);
     }
     return expr->execute(i);
 }

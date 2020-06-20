@@ -2,7 +2,7 @@
 
 namespace js {
 
-ExpressionStatement::ExpressionStatement(Node* exp): expression(exp)
+ExpressionStatement::ExpressionStatement(std::shared_ptr<Node> exp): expression(exp)
 {
 
 }

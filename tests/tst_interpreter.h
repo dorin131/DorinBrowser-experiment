@@ -64,7 +64,7 @@ TEST(Interpreter, AllTests)
     for (test test : tests) {
         js::Tokenizer t = js::Tokenizer(test.code);
         auto p = js::Parser(t);
-        js::Program* program;
+        std::shared_ptr<js::Program> program;
         try {
             program = p.parse_program();
         } catch (js::SyntaxError e) {

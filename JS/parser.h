@@ -33,7 +33,7 @@ class Parser
 public:
     Parser(Tokenizer);
 
-    Program* parse_program();
+    std::shared_ptr<Program> parse_program();
 private:
     Tokenizer tokenizer;
     Token current_token;
@@ -63,23 +63,23 @@ private:
     };
 
     // Parsers
-    Statement* parse_statement();
-    VariableStatement* parse_variable_statement();
-    IfStatement* parse_if_statement();
-    ReturnStatement* parse_return_statement();
-    FunctionDeclaration* parse_function_declaration();
-    ExpressionStatement* parse_expression_statement();
-    Node* parse_expression(Precedence);
-    Literal* parse_literal_expression();
-    Node* parse_grouped_expression();
-    BinaryExpression* parse_binary_expression(Node*);
-    Expression* parse_identifier();
-    BlockStatement* parse_block_statement();
-    CallExpression* parse_call_expression(Node*);
-    ObjectStatement* parse_object_statement();
-    ObjectExpression* parse_object_expression();
+    std::shared_ptr<Statement> parse_statement();
+    std::shared_ptr<VariableStatement> parse_variable_statement();
+    std::shared_ptr<IfStatement> parse_if_statement();
+    std::shared_ptr<ReturnStatement> parse_return_statement();
+    std::shared_ptr<FunctionDeclaration> parse_function_declaration();
+    std::shared_ptr<ExpressionStatement> parse_expression_statement();
+    std::shared_ptr<Node> parse_expression(Precedence);
+    std::shared_ptr<Literal> parse_literal_expression();
+    std::shared_ptr<Node> parse_grouped_expression();
+    std::shared_ptr<BinaryExpression> parse_binary_expression(std::shared_ptr<Node>);
+    std::shared_ptr<Expression> parse_identifier();
+    std::shared_ptr<BlockStatement> parse_block_statement();
+    std::shared_ptr<CallExpression> parse_call_expression(std::shared_ptr<Node>);
+    std::shared_ptr<ObjectStatement> parse_object_statement();
+    std::shared_ptr<ObjectExpression> parse_object_expression();
     std::list<Identifier> parse_function_parameters();
-    std::vector<Node*> parse_call_arguments();
+    std::vector<std::shared_ptr<Node>> parse_call_arguments();
 
     // Helpers
     void next_token();

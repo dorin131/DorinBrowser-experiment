@@ -3,7 +3,7 @@
 
 namespace js {
 
-CallExpression::CallExpression(Node* exp, std::vector<Node*> args)
+CallExpression::CallExpression(std::shared_ptr<Node> exp, std::vector<std::shared_ptr<Node>> args)
     : expression(exp), arguments(args)
 {
 
@@ -11,14 +11,14 @@ CallExpression::CallExpression(Node* exp, std::vector<Node*> args)
 
 Value CallExpression::execute(Interpreter& i)
 {
-    Node* callee = expression;
+    std::shared_ptr<Node> callee = expression;
 
     if (expression->get_type() == "Identifier") {
-        callee = i.find_in_scope(static_cast<Identifier*>(callee));
+        callee = i.find_in_scope(*std::static_pointer_cast<Identifier>(callee));
     }
 
     if (callee->get_type() == "FunctionDeclaration") {
-        auto function = static_cast<FunctionDeclaration*>(callee);
+        auto function = std::static_pointer_cast<FunctionDeclaration>(callee);
         function->get_body()->associate_arguments(arguments);
         return function->get_body()->execute(i);
     }
