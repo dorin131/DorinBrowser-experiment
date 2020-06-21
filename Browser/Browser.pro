@@ -1,4 +1,4 @@
-QT       += core gui
+QT       += core gui opengl
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -17,10 +17,12 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
     browser.cpp \
+    canvas.cpp \
     main.cpp
 
 HEADERS += \
-    browser.h
+    browser.h \
+    canvas.h
 
 FORMS += \
     browser.ui
