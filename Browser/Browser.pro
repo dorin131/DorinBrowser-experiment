@@ -18,11 +18,15 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += \
     browser.cpp \
     canvas.cpp \
+    console_in.cpp \
+    console_out.cpp \
     main.cpp
 
 HEADERS += \
     browser.h \
-    canvas.h
+    canvas.h \
+    console_in.h \
+    console_out.h
 
 FORMS += \
     browser.ui

@@ -153,7 +153,7 @@
               <number>0</number>
              </property>
              <item>
-              <widget class="QPlainTextEdit" name="plainTextEdit">
+              <widget class="ConsoleOut" name="consoleOutput">
                <property name="font">
                 <font>
                  <family>Source Code Pro</family>
@@ -169,7 +169,7 @@
           </widget>
          </item>
          <item>
-          <widget class="QLineEdit" name="lineEdit">
+          <widget class="ConsoleIn" name="consoleInput">
            <property name="font">
             <font>
              <family>Source Code Pro</family>
@@ -206,6 +206,16 @@
    <class>Canvas</class>
    <extends>QOpenGLWidget</extends>
    <header location="global">canvas.h</header>
+  </customwidget>
+  <customwidget>
+   <class>ConsoleOut</class>
+   <extends>QPlainTextEdit</extends>
+   <header location="global">console_out.h</header>
+  </customwidget>
+  <customwidget>
+   <class>ConsoleIn</class>
+   <extends>QLineEdit</extends>
+   <header location="global">console_in.h</header>
   </customwidget>
  </customwidgets>
  <resources/>

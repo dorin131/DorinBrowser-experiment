@@ -8,6 +8,11 @@ Browser::Browser(QWidget *parent)
     ui->address->setText("https://");
 
     connect(ui->goButton, SIGNAL(released()), this, SLOT(go()));
+
+    connect(ui->consoleInput, SIGNAL(returnPressed()), ui->consoleOutput, SLOT(console_enter()));
+    connect(ui->consoleInput, SIGNAL(textChanged(QString)), ui->consoleOutput, SLOT(console_input_changed(QString)));
+
+    connect(ui->consoleInput, SIGNAL(returnPressed()), ui->consoleInput, SLOT(console_enter()));
 }
 
 Browser::~Browser()
