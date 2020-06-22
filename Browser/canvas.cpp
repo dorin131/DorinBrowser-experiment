@@ -5,6 +5,16 @@ Canvas::Canvas(QWidget* parent): QOpenGLWidget(parent)
 
 }
 
+void Canvas::draw_text(int x, int y, std::string text)
+{
+    QPainter painter(this);
+    painter.setPen(Qt::white);
+    painter.setFont(QFont("Arial", 16));
+    painter.setRenderHints(QPainter::Antialiasing | QPainter::TextAntialiasing);
+    painter.drawText(x, y, width(), height(), Qt::AlignCenter, QString::fromStdString(text));
+    painter.end();
+}
+
 void Canvas::initializeGL()
 {
     glClearColor(1,1,1,1);
@@ -36,4 +46,6 @@ void Canvas::paintGL()
         glColor3f(0.0, 0.0, 1.0);
         glVertex3f( 0.0,  0.5, 0);
     glEnd();
+
+    draw_text(0, 0, "hello!");
 }

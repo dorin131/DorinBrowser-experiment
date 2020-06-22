@@ -4,6 +4,9 @@
 #include <QMainWindow>
 #include <QMessageBox>
 
+#include "canvas.h"
+#include "ui_browser.h"
+
 QT_BEGIN_NAMESPACE
 namespace Ui { class Browser; }
 QT_END_NAMESPACE

@@ -1,5 +1,4 @@
 #include "browser.h"
-#include "ui_browser.h"
 
 Browser::Browser(QWidget *parent)
     : QMainWindow(parent)
@@ -21,4 +20,7 @@ void Browser::go()
     QMessageBox* d = new QMessageBox(this);
     d->setText("Getting: " + ui->address->text());
     d->exec();
+
+    Canvas c;
+    c.draw_text(0, 0, "hello world!");
 }
