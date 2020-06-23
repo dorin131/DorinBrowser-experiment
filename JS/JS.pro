@@ -1,3 +1,7 @@
+TEMPLATE = lib
+
+DEFINES += JS
+
 HEADERS += interpreter.h \
     error.h \
     expressions/call_expression.h \
