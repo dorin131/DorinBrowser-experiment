@@ -13,6 +13,7 @@ Browser::Browser(QWidget *parent)
     connect(ui->consoleInput, SIGNAL(textChanged(QString)), ui->consoleOutput, SLOT(console_input_changed(QString)));
 
     connect(ui->consoleInput, SIGNAL(returnPressed()), ui->consoleInput, SLOT(console_enter()));
+    connect(ui->consoleInput, SIGNAL(key_up_pressed()), ui->consoleInput, SLOT(show_last_command()));
 }
 
 Browser::~Browser()
