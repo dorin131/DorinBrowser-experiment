@@ -4,6 +4,8 @@
 #include <QMainWindow>
 #include <QMessageBox>
 
+#include <../HTML/html.h>
+
 #include "canvas.h"
 #include "ui_browser.h"
 
@@ -21,8 +23,9 @@ public:
 
 private:
     Ui::Browser *ui;
-
 private slots:
     void go();
+signals:
+    void render_page(std::string);
 };
 #endif // MAINWINDOW_H

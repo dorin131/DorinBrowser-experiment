@@ -11,13 +11,15 @@ SOURCES += \
     canvas.cpp \
     console_in.cpp \
     console_out.cpp \
-    main.cpp
+    main.cpp \
+    request.cpp
 
 HEADERS += \
     browser.h \
     canvas.h \
     console_in.h \
-    console_out.h
+    console_out.h \
+    request.h
 
 FORMS += \
     browser.ui

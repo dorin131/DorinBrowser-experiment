@@ -19,15 +19,16 @@ public:
 
 private:
     std::string input_buffer;
-
-private slots:
-    void console_enter();
-    void console_input_changed(QString);
     void append_input(std::string);
     void append_output(std::string);
 
     static std::string get_time();
     static std::string js_eval(std::string);
+
+private slots:
+    void console_enter();
+    void console_input_changed(QString);
+
 signals:
 
 };

@@ -23,10 +23,10 @@ Browser::~Browser()
 
 void Browser::go()
 {
-    QMessageBox* d = new QMessageBox(this);
-    d->setText("Getting: " + ui->address->text());
-    d->exec();
-
-    Canvas c;
-    c.draw_text(0, 0, "hello world!");
+//    QMessageBox* d = new QMessageBox(this);
+//    d->setText("Getting: " + ui->address->text());
+//    d->exec();
+    auto html = Request::get("https://fodor.org");
+    auto ast = html::HTML().parse(html);
+    ui->canvas->set_ast(ast);
 }

@@ -10,7 +10,7 @@ class HTML
 public:
     HTML();
 
-    void parse(std::string);
+    std::string parse(std::string); // should return an AST
 };
 
 } // namespace html

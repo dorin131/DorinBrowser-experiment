@@ -6,9 +6,9 @@ HTML::HTML()
 {
 }
 
-void HTML::parse(std::string html)
+std::string HTML::parse(std::string html)
 {
-    std::cout << html;
+    return html;
 }
 
 } // namespace html
