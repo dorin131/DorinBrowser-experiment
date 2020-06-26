@@ -1,6 +1,5 @@
 TEMPLATE = lib
-
-DEFINES += JS
+CONFIG += staticlib c++11
 
 HEADERS += interpreter.h \
     error.h \
