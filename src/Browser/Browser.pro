@@ -56,12 +56,12 @@ else:unix: PRE_TARGETDEPS += $$OUT_PWD/../JS/libJS.a
 
 # curlpp
 
-win32:CONFIG(release, debug|release): LIBS += -L$$PWD/../../libs/curlpp-0.8.1/build/release/ -lcurlpp -lcurl
-else:win32:CONFIG(debug, debug|release): LIBS += -L$$PWD/../../libs/curlpp-0.8.1/build/debug/ -lcurlpp -lcurl
+win32:CONFIG(release, debug|release): LIBS += -L$$PWD/../../libs/curlpp-0.8.1/build/release/ -lcurlpp
+else:win32:CONFIG(debug, debug|release): LIBS += -L$$PWD/../../libs/curlpp-0.8.1/build/debug/ -lcurlpp
 else:unix: LIBS += -L$$PWD/../../libs/curlpp-0.8.1/build/ -lcurlpp -lcurl
 
-INCLUDEPATH += $$PWD/../../libs/curlpp-0.8.1/build $$PWD/../../libs/curlpp-0.8.1/include
-DEPENDPATH += $$PWD/../../libs/curlpp-0.8.1/build $$PWD/../../libs/curlpp-0.8.1/include
+INCLUDEPATH += $$PWD/../../libs/curlpp-0.8.1/include
+DEPENDPATH += $$PWD/../../libs/curlpp-0.8.1/include
 
 win32-g++:CONFIG(release, debug|release): PRE_TARGETDEPS += $$PWD/../../libs/curlpp-0.8.1/build/release/libcurlpp.a
 else:win32-g++:CONFIG(debug, debug|release): PRE_TARGETDEPS += $$PWD/../../libs/curlpp-0.8.1/build/debug/libcurlpp.a
