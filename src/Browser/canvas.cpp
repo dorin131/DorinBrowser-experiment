@@ -46,7 +46,7 @@ void Canvas::draw_text(int x, int y, std::string text)
 {
     QPainter painter(this);
     painter.setPen(Qt::black);
-    painter.setFont(QFont("Arial", 16));
+    painter.setFont(QFont("Arial", 12));
     painter.setRenderHints(QPainter::Antialiasing | QPainter::TextAntialiasing);
     painter.drawText(x, y, width(), height(), Qt::AlignLeft, QString::fromStdString(text));
     painter.end();

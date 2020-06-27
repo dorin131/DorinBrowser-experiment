@@ -16,7 +16,7 @@ public:
     void draw_text(int x, int y, std::string text);
     void set_ast(std::string); // will take an AST
 private:
-    std::string html_ast = "lol"; // will change from a string to an AST type
+    std::string html_ast = ""; // will change from a string to an AST type
     void render_html();
 protected:
     void initializeGL() override;

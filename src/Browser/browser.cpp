@@ -5,7 +5,7 @@ Browser::Browser(QWidget *parent)
     , ui(new Ui::Browser)
 {
     ui->setupUi(this);
-    ui->address->setText("https://");
+    ui->address->setText("https://fodor.org");
 
     connect(ui->goButton, SIGNAL(released()), this, SLOT(go()));
 
@@ -26,7 +26,7 @@ void Browser::go()
 //    QMessageBox* d = new QMessageBox(this);
 //    d->setText("Getting: " + ui->address->text());
 //    d->exec();
-    auto html = Request::get("https://fodor.org");
+    auto html = Request::get(ui->address->text().toUtf8().data());
     auto ast = html::HTML().parse(html);
     ui->canvas->set_ast(ast);
 }
