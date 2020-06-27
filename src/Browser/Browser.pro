@@ -24,6 +24,8 @@ HEADERS += \
 FORMS += \
     browser.ui
 
+# HTML
+
 win32:CONFIG(release, debug|release): LIBS += -L$$OUT_PWD/../HTML/release/ -lHTML
 else:win32:CONFIG(debug, debug|release): LIBS += -L$$OUT_PWD/../HTML/debug/ -lHTML
 else:unix: LIBS += -L$$OUT_PWD/../HTML/ -lHTML
@@ -37,6 +39,8 @@ else:win32:!win32-g++:CONFIG(release, debug|release): PRE_TARGETDEPS += $$OUT_PW
 else:win32:!win32-g++:CONFIG(debug, debug|release): PRE_TARGETDEPS += $$OUT_PWD/../HTML/debug/HTML.lib
 else:unix: PRE_TARGETDEPS += $$OUT_PWD/../HTML/libHTML.a
 
+# JS
+
 win32:CONFIG(release, debug|release): LIBS += -L$$OUT_PWD/../JS/release/ -lJS
 else:win32:CONFIG(debug, debug|release): LIBS += -L$$OUT_PWD/../JS/debug/ -lJS
 else:unix: LIBS += -L$$OUT_PWD/../JS/ -lJS
@@ -49,3 +53,18 @@ else:win32-g++:CONFIG(debug, debug|release): PRE_TARGETDEPS += $$OUT_PWD/../JS/d
 else:win32:!win32-g++:CONFIG(release, debug|release): PRE_TARGETDEPS += $$OUT_PWD/../JS/release/JS.lib
 else:win32:!win32-g++:CONFIG(debug, debug|release): PRE_TARGETDEPS += $$OUT_PWD/../JS/debug/JS.lib
 else:unix: PRE_TARGETDEPS += $$OUT_PWD/../JS/libJS.a
+
+# curlpp
+
+win32:CONFIG(release, debug|release): LIBS += -L$$PWD/../../libs/curlpp-0.8.1/build/release/ -lcurlpp -lcurl
+else:win32:CONFIG(debug, debug|release): LIBS += -L$$PWD/../../libs/curlpp-0.8.1/build/debug/ -lcurlpp -lcurl
+else:unix: LIBS += -L$$PWD/../../libs/curlpp-0.8.1/build/ -lcurlpp -lcurl
+
+INCLUDEPATH += $$PWD/../../libs/curlpp-0.8.1/build $$PWD/../../libs/curlpp-0.8.1/include
+DEPENDPATH += $$PWD/../../libs/curlpp-0.8.1/build $$PWD/../../libs/curlpp-0.8.1/include
+
+win32-g++:CONFIG(release, debug|release): PRE_TARGETDEPS += $$PWD/../../libs/curlpp-0.8.1/build/release/libcurlpp.a
+else:win32-g++:CONFIG(debug, debug|release): PRE_TARGETDEPS += $$PWD/../../libs/curlpp-0.8.1/build/debug/libcurlpp.a
+else:win32:!win32-g++:CONFIG(release, debug|release): PRE_TARGETDEPS += $$PWD/../../libs/curlpp-0.8.1/build/release/curlpp.lib
+else:win32:!win32-g++:CONFIG(debug, debug|release): PRE_TARGETDEPS += $$PWD/../../libs/curlpp-0.8.1/build/debug/curlpp.lib
+else:unix: PRE_TARGETDEPS += $$PWD/../../libs/curlpp-0.8.1/build/libcurlpp.a

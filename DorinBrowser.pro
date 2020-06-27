@@ -2,7 +2,7 @@ TEMPLATE = subdirs
 
 CONFIG += ordered
 
-SUBDIRS = JS \
-    HTML \
-    Browser \
+SUBDIRS = src/JS \
+    src/HTML \
+    src/Browser \
     tests

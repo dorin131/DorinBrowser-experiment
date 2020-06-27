@@ -4,7 +4,7 @@
 #include <gtest/gtest.h>
 #include <gmock/gmock-matchers.h>
 
-#include "../JS/tokenizer.h"
+#include "../src/JS/tokenizer.h"
 
 using namespace testing;
 

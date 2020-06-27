@@ -4,10 +4,10 @@
 #include <gtest/gtest.h>
 #include <gmock/gmock-matchers.h>
 
-#include "../JS/tokenizer.h"
-#include "../JS/parser.h"
-#include "../JS/value.h"
-#include "../JS/interpreter.h"
+#include "../src/JS/tokenizer.h"
+#include "../src/JS/parser.h"
+#include "../src/JS/value.h"
+#include "../src/JS/interpreter.h"
 
 using namespace testing;
 
