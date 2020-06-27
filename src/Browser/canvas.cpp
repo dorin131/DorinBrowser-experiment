@@ -28,15 +28,6 @@ void Canvas::paintGL()
 {
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-    glBegin(GL_TRIANGLES);
-        glColor3f(1.0, 0.0, 0.0);
-        glVertex3f(-0.5, -0.5, 0);
-        glColor3f(0.0, 1.0, 0.0);
-        glVertex3f( 0.5, -0.5, 0);
-        glColor3f(0.0, 0.0, 1.0);
-        glVertex3f( 0.0,  0.5, 0);
-    glEnd();
-
     render_html();
 }
 
@@ -54,9 +45,9 @@ void Canvas::render_html()
 void Canvas::draw_text(int x, int y, std::string text)
 {
     QPainter painter(this);
-    painter.setPen(Qt::white);
+    painter.setPen(Qt::black);
     painter.setFont(QFont("Arial", 16));
     painter.setRenderHints(QPainter::Antialiasing | QPainter::TextAntialiasing);
-    painter.drawText(x, y, width(), height(), Qt::AlignCenter, QString::fromStdString(text));
+    painter.drawText(x, y, width(), height(), Qt::AlignLeft, QString::fromStdString(text));
     painter.end();
 }

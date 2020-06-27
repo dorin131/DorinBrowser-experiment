@@ -2,6 +2,8 @@
 #define REQUEST_H
 
 #include <iostream>
+#include <string>
+#include <sstream>
 #include "../../libs/curlpp-0.8.1/include/curlpp/cURLpp.hpp"
 #include "../../libs/curlpp-0.8.1/include/curlpp/Easy.hpp"
 #include "../../libs/curlpp-0.8.1/include/curlpp/Options.hpp"

@@ -9,29 +9,32 @@ std::string Request::get(std::string)
 {
     try
     {
-            // That's all that is needed to do cleanup of used resources (RAII style).
-            curlpp::Cleanup myCleanup;
+        // That's all that is needed to do cleanup of used resources (RAII style).
+        curlpp::Cleanup myCleanup;
 
-            // Our request to be sent.
-            curlpp::Easy myRequest;
+        // Our request to be sent.
+        curlpp::Easy myRequest;
 
-            // Set the URL.
-            myRequest.setOpt<curlpp::options::Url>("http://fodor.org");
+        // Set the URL.
+        myRequest.setOpt<curlpp::options::Url>("https://fodor.org");
 
-            // Send request and get a result.
-            // By default the result goes to standard output.
-            myRequest.perform();
+        std::ostringstream os;
+        curlpp::options::WriteStream ws(&os);
+        myRequest.setOpt(ws);
+        myRequest.perform();
+
+        return os.str();
     }
 
     catch(curlpp::RuntimeError & e)
     {
-            std::cout << e.what() << std::endl;
+        std::cout << e.what() << std::endl;
     }
 
     catch(curlpp::LogicError & e)
     {
-            std::cout << e.what() << std::endl;
+        std::cout << e.what() << std::endl;
     }
 
-    return "<div>hello world</div>";
+    return "";
 }
